@@ -1,0 +1,180 @@
+\documentclass[12pt, eng, twoside, openany, final]{mgr}
+% \documentclass[eng, printmode]{mgr}
+
+
+\include{preambula}
+% \include{bibliografia}
+
+
+% re-definiowane polecenie w celu przechowywania nazwiska autora, jego brak powoduje ostrzezenie (Warning) podczas przetwarzania.
+\author{Piotr Szczpański} 
+
+% re-definiowane polecenie w celu przechowywania polskiego tytułu pracy magisterskiej, jego brak powoduje ostrzezenie (Warning) podczas przetwarzania.
+\title{Moduł sterownika oświetlenia LED} 
+
+
+% polecenie zdefiniowane w celu przechowywania angielskiego tytułu pracy magisterskiej, jego brak powoduje ostrzezenie (Warning) podczas przetwarzania.
+\engtitle{LED lighting controller module} 
+
+
+% polecenie zdefiniowane w celu przechowywania danych osobowych prowadzacego prace, jego brak powoduje ostrzezenie (Warning) podczas przetwarzania.
+\supervisor{dr inż. Antoni Izworski} 
+
+% polecenie zdefiniowane w celu przechowywania danych osobowych opiekuna pracy. W przypadku gdy jest to ta sama osoba co \supervisor, nie nalezy uzywac tego polecenia. Jego brak usunie ze strony tytułowej zbedna informacje.
+% \guardian{tytuł, Imie Nazwisko, jednostka} 
+
+
+% polecenie zdefiniowane w celu przechowywania nazwy kierunku studiów, jego brak powoduje ostrzezenie (Warning) podczas przetwarzania.
+\field{Automatyka i Robotyka (AIR)} 
+
+
+% polecenie zdefiniowane w celu przechowywania nazwy specjalnosci studiów, jego brak powoduje ostrzezenie (Warning) podczas przetwarzania.
+\specialisation{Robotyka (ARR)} 
+
+% re-definiowane polecenie w celu przechowywania roku. Standardowo u dołu strony tytułowej wstawiany jest biezacy rok, uzycie tego polecenia pozwala wstawic dowolny rok.
+\date{2018}
+\usepackage{fancyhdr}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\pagestyle{fancy}
+\fancyhead{} 
+\fancyfoot{} 
+\lhead{Politechnika Wrocławska Wydział Elektroniki}
+\rfoot{\thepage}
+\lfoot{Szczepański P, Moduł sterownika oświetlenia LED}
+
+
+\chapter{Wstęp}
+\thispagestyle{fancy}
+    \section{Wprowadzenie}
+    W dzisejszczych czasach oświetlenie w naszych domach opórcz funkcji czysto praktycznej, ma również służyć jako dekoracja i stanowić integralną część wystroju. \\*
+    Oświetlenie LED stanowi znaczącą część rynku elektroniki konsumenckiej i w ciągu kilkunastu lat wyparła prawie całkowicie z użytku codziennego wolframowe żarówki i lampy wyładowcze (potocznie zwane świetlówkami). Popularność technologii LED jest spowodowana głównie atrakcyjnymi cenami produktów i znacząco większą sprawnością elektryczną oraz co za tym idzie niższym zużyciem energii elektrycznej.
+    
+    \section{Cel i zakres pracy}
+    Celem pracy jest stworzenie opisu powstawania, dokumentacji użytkownika i dokumentacji technicznej nowoczesnego sterownika oświetlenia LED opartego na platformie mikrokontrolerowej.
+    
+    Zakres pracy obejmuje opracowanie materiałów produkcyjnych, oprogramowania oraz fizycznego modelu. W szczególności zakres pracy obejmuje: 
+    \begin{itemize}
+        \item zaprojektowanie elektroniki, 
+        \item budowę modułu sterownika oświetlenia,
+        \item stworzenie opiu i objaśnienia wykorzystanych technologii,
+        \item wytworzenie oprogramowania oraz jego opisu funkcjonalnego,
+        \item opracowanie dokumentacji technicznej modułu,
+        \item opracowanie instrukcji obsługi modułu oraz dokumentacji dla użytkownika końcowego.
+    \end{itemize}
+%
+\chapter{Założenia projektowe}
+\thispagestyle{fancy}  
+    Tworzony moduł będzie oferował użytkownikowi możliwość sterowania kolorami i jasnością trójkolorowego paska ledowego oraz sterwoanie dwoma wyjściami przekaźnikowymi. Użytkownik będzie komunikował się z modułem przez czterocalowy dotykowy wyświetlacz. Interfejs będzie udostępniał możliwość ręcznej zmiany stanów podłączonego oświetlenia, programowania własnych sekwencji zmiany kolorów paska LED i stanów wyjść przekaźnikowych oraz czasowego wywoływania zapisanych scen oświetleniowych.\\*
+    Gotowy moduł sterowonika oświetlenia LED musi spełniać kryteria jakościowe, w szczególności:
+    \begin{itemize}
+        \item częstoliwość odświeżania generowango sygnału PWM sterującego pasek ledowy musi być tak wysoka, aby nie można było zaobserować migotania,
+        
+        \item graficzny interfejs użytkownika powinien być przejżysty, intuicyjny w obsłudze oraz na tyle responsywny, żeby
+        obsługa modułu była komfortowa,
+        
+        \item moduł musi działać w ciągłości, tzn. konfiguracja wbudowanego systemu operacyjnego musi zabezpieczać sytuacje
+        krytycznych błędów czasu działania, między innymi takich jak: desynchronizacja systemowego zegara, wyłączenie aplikacji interfejsu graficznego
+    \end{itemize}
+%
+\chapter{Opis wykorzystanych technologii}
+\thispagestyle{fancy}
+    \section{Raspberry Pi}
+    Raspberry Pi jest serią jednopłytkowych komputerów opartych na rdzeniach ARM. Pod nazwą Raspberry Pi kryje się również olbżymia społeczność rozwijająca oprogomowanie, tworząca biblioteki i materiały edukacyjne.
+    W projekcie wykorzystano model \emph{Raspberry Pi Zero W V1.3} oparty na procesorze  \emph{Broadcom BCM2835 ARM11}. Moduł wyposażony jest m.in. w 512MB pamięci RAM, moduł WiFi, moduł Bluetooth, port miniHDMI. DZIĘKI ?? dużymi możliwościami technicznymi oraz niskiej cenie, modułu ten jest powszechnie wykorzystywany przy prototypowaniu urządzeń elektronicznych IoT.
+    \textcolor{red}{(jeszcz coś o linuxie)}
+    \section{Język C++}
+   \textcolor{red}{zalety względem czystego c , różnice między pythonem}
+    \section{Biblioteka QT i QML}
+    \textcolor{red}{rys historyczny, krótki opis, zalety QML}
+
+%
+\chapter{Dokumentacja użytkownika}
+\thispagestyle{fancy}
+    \section{Podłączanie zasilania i urządzeń wykonawczych}
+    \section{Opis interfejsu graficznego}
+    \section{Konfiguracja funkcji}
+        \subsection{Tworzenie scen}
+        \subsection{Tworzenie animacji}
+        \subsection{Tworzenie zdarzeń czasowych}
+%
+\chapter{Dokumentacja serwisowa}
+\thispagestyle{fancy}
+    \section{Typowe wykorzystanie}
+    Przeznaczeniem modułu jest wykorzystanie w pomieszczeniu użytkowym, do sterowania kolorami paska ledowego oraz do przełączania dwóch wyjść przekaźnikowych. Wyjścia przekaźnikowe zostały umieszczone w projekcie aby pozwolić użytkownikowi podłączyć i sterować np.: stanem jednokolorowego paska LED, stanem żarówki LED lub zewnętrznym przekaźnikiem bądź stycznikiem. Maksymalne parametry elektryczne określone są w sekcji \emph{5.2.1 Elektornika wykonawcza}.
+    \newpage
+    
+    \section{Budowa modułu}
+    Sterownik składa się z zaprojektowanej płytki z elektroniką wykonawczą i stabilizatorem napięcia, połączonej wielożyłowym kablem z modułem \emph{Raspberry Pi}, do którego, za pomocą listwy goldpin, podłączony jest wyświetlacz dotykowy.
+        \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.65\textwidth]{mounted_pcb.jpg}
+            \caption{Zmontowana PCB z elektroniką wykonawczą}
+        \end{center}
+        \end{figure}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum semper elit felis, ac dictum elit consequat sit amet. Mauris neque risus, vulputate nec risus eu, porttitor scelerisque justo. Morbi sit amet aliquet magna. Proin elementum tortor convallis vestibulum laoreet. Suspendisse potenti. Cras sit amet vulputate metus. Sed eget nisi tincidunt, rhoncus sapien eu, suscipit elit. Ut eu suscipit ante. Aliquam pulvinar libero in blandit placerat. Mauris aliquet sagittis ipsum at viverra. Maecenas turpis mauris, euismod et ligula non, eleifend placerat leo. Aenean ut nulla volutpat, pharetra arcu sit amet, faucibus nisl.
+        \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{mounted_pcb.jpg}
+            \caption{Zmontowana PCB}
+        \end{center}
+        \end{figure}
+        \newpage
+        \subsection{Elektronika wykonawcza}
+            \subsubsection{Sterownik paska LED}
+                Protoypowanie modułu rozpoczęto od budowy sterownika paska ledowego, który sterowany był za pomocą prostego 8-bitowego mikrokontorlera \emph{Atmega 168P}. Sterownik składa się z trzech identycznych kanałów, osobnego dla każdego koloru paska. 
+                \begin{figure}[H]
+                \begin{center}
+                    \includegraphics[width=0.45\textwidth]{sterownik.png}
+                    \caption{Schemat trzykanałowego sterownika paska LED}
+                \end{center}
+                \end{figure}
+                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej, napięcia, tranzysor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, żę między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w w formie ciepła. 
+        
+            \subsubsection{Wyjścia przekaźnikowe}
+                \begin{figure}[H]
+                \begin{center}
+                    \includegraphics[width=0.6\textwidth]{przekazniki.png}
+                    \caption{Schemat wyjść przekaźnikowych}
+                \end{center}
+                \end{figure}
+        \subsection{Przetwornica napięcia}
+                \begin{figure}[H]
+                \begin{center}
+                    \includegraphics[width=0.6\textwidth]{psu.png}
+                    \caption{Schemat przetwornicy napięć}
+                \end{center}
+                \end{figure}
+        \subsection{Płytka drukowana}
+            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
+    \section{Instrukcja montażu}
+    \section{Sprawdzanie modułu}
+            Płytka 
+
+
+%
+% \chapter{Dokumentacja oprogramowania}
+%     \section{Model funkcjonalny oprogramowania}
+%     \textcolor{red}{diagram uml, opis interfejsów}
+%     \section{Opis kodu interfejsu graficznego}
+%     \textcolor{red}{krótki opis podstawowych zapisów syntaktycznych qml na przykładzie kodu z projektu}
+%
+\chapter{Wnioski i uwagi}
+\thispagestyle{fancy}
+  \cite{CleanCode,EffectiveModern,RpiBeginner}
+
+
+% \listoffigures
+% \listoftables
+\bibliographystyle{plabbrv}
+
+\addcontentsline{toc}{chapter}{Bibliografia} %utworzenie w spisie treści pozycji Bibliografia
+\bibliography{bibliografia} % wstawia bibliografię korzystając z pliku bibliografia.bib - dotyczy BibTeXa, jeżeli nie korzystamy z BibTeXa należy użyć otoczenia thebibliography
+
+
+
+\end{document}
