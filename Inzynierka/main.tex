@@ -1,7 +1,6 @@
 \documentclass[12pt, eng, twoside, openany, final]{mgr}
 % \documentclass[eng, printmode]{mgr}
 
-
 \include{preambula}
 % \include{bibliografia}
 
@@ -38,6 +37,7 @@
 \begin{document}
 \maketitle
 \tableofcontents
+\listoffigures
 \newpage
 
 \pagestyle{fancy}
@@ -88,10 +88,18 @@
     W projekcie wykorzystano model \emph{Raspberry Pi Zero W V1.3} oparty na procesorze  \emph{Broadcom BCM2835 ARM11}. Moduł wyposażony jest m.in. w 512MB pamięci RAM, moduł WiFi, moduł Bluetooth, port miniHDMI. DZIĘKI ?? dużymi możliwościami technicznymi oraz niskiej cenie, modułu ten jest powszechnie wykorzystywany przy prototypowaniu urządzeń elektronicznych IoT.
     \textcolor{red}{(jeszcz coś o linuxie)}
     \section{Język C++}
-   \textcolor{red}{zalety względem czystego c , różnice między pythonem}
+       \textcolor{red}{zalety względem czystego c , różnice między pythonem}
+       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate nulla quis magna iaculis, vitae dignissim turpis malesuada. Nullam lacus eros, fermentum eu tristique at, aliquam ut nibh. Donec in porta dolor. Etiam eu nunc non dui auctor lobortis a eu nunc. Vivamus euismod magna nec nulla auctor porta. Pellentesque semper sapien id mauris eleifend posuere. Pellentesque eget varius justo. Ut molestie nulla mauris, eget pretium quam ultricies in. In posuere tristique nibh.
+
+    Pellentesque libero velit, pellentesque ac vestibulum nec, sollicitudin nec nibh. Curabitur eget lectus dolor. Ut non est vel dui elementum dignissim eget ultricies leo. Fusce sit amet dictum lorem, vel mattis nulla. Duis ut neque semper, egestas purus sit amet, gravida massa. Sed tellus est, rhoncus sed rutrum id, imperdiet non erat. Sed gravida cursus efficitur. Fusce vulputate posuere magna sed rhoncus. Integer convallis ex eu lacus consectetur, eu fermentum urna feugiat. Maecenas et tellus risus. Vivamus eget consequat quam. Vivamus accumsan tempus ante, vitae dignissim odio convallis nec. Nunc molestie sit amet ex pulvinar volutpat.
+
+    Nulla ultricies enim ut auctor viverra. Nulla facilisi. Donec orci sapien, faucibus eu sem eu, bibendum placerat sem. Curabitur condimentum sed leo ac hendrerit. Aliquam sed elementum velit. Donec sagittis felis magna, vel fringilla odio dictum eu. Cras vel accumsan nunc. Etiam dignissim ipsum vel lacus eleifend, sed posuere ante tincidunt. Duis tempor lorem vitae pellentesque lobortis.
+    
     \section{Biblioteka QT i QML}
     \textcolor{red}{rys historyczny, krótki opis, zalety QML}
+    Fusce sed arcu tristique, pretium quam id, eleifend mi. Vestibulum luctus ex tristique dapibus condimentum. Morbi non fermentum sem. Maecenas sit amet cursus quam, id vestibulum massa. Vivamus vel risus et lacus tempor lobortis. Maecenas aliquet lorem id venenatis euismod. Aliquam leo magna, convallis et lorem quis, semper blandit urna. Proin vel mi at urna scelerisque ultrices iaculis id odio. Suspendisse ornare est mi, sed faucibus ex tristique id. Ut porta efficitur auctor. Ut arcu justo, ultrices non tempor nec, cursus ac nisl. Nulla ac sem erat.
 
+    Duis magna turpis, luctus vel interdum ac, pellentesque dapibus nunc. Aenean mollis libero sapien, et tristique neque interdum quis. Donec ullamcorper lectus nec eros lacinia, sit amet euismod quam venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam porta leo orci, eu tempus ex tristique vitae.
 %
 \chapter{Dokumentacja użytkownika}
 \thispagestyle{fancy}
@@ -105,37 +113,56 @@
 \chapter{Dokumentacja serwisowa}
 \thispagestyle{fancy}
     \section{Typowe wykorzystanie}
-    Przeznaczeniem modułu jest wykorzystanie w pomieszczeniu użytkowym, do sterowania kolorami paska ledowego oraz do przełączania dwóch wyjść przekaźnikowych. Wyjścia przekaźnikowe zostały umieszczone w projekcie aby pozwolić użytkownikowi podłączyć i sterować np.: stanem jednokolorowego paska LED, stanem żarówki LED lub zewnętrznym przekaźnikiem bądź stycznikiem. Maksymalne parametry elektryczne określone są w sekcji \emph{5.2.1 Elektornika wykonawcza}.
+    Przeznaczeniem modułu jest wykorzystanie w pomieszczeniu użytkowym, do sterowania intensywnością świecenia poszczególnych kolorów paska ledowego oraz do przełączania dwóch dwunastowoltowych wyjść przekaźnikowych. Wyjścia przekaźnikowe zostały umieszczone w projekcie aby pozwolić użytkownikowi podłączyć i sterować np.: stanem jednokolorowego paska LED, stanem żarówki LED lub zewnętrznym przekaźnikiem bądź stycznikiem. Maksymalne parametry elektryczne określone są w sekcji \emph{5.2.1 Elektornika wykonawcza}.
     \newpage
     
     \section{Budowa modułu}
     Sterownik składa się z zaprojektowanej płytki z elektroniką wykonawczą i stabilizatorem napięcia, połączonej wielożyłowym kablem z modułem \emph{Raspberry Pi}, do którego, za pomocą listwy goldpin, podłączony jest wyświetlacz dotykowy.
         \begin{figure}[H]
         \begin{center}
-            \includegraphics[width=0.65\textwidth]{mounted_pcb.jpg}
-            \caption{Zmontowana PCB z elektroniką wykonawczą}
+            \includegraphics[width=0.4\textwidth]{diagram.jpg}
+            \caption{Schemat ideowy modułu}
         \end{center}
         \end{figure}
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum semper elit felis, ac dictum elit consequat sit amet. Mauris neque risus, vulputate nec risus eu, porttitor scelerisque justo. Morbi sit amet aliquet magna. Proin elementum tortor convallis vestibulum laoreet. Suspendisse potenti. Cras sit amet vulputate metus. Sed eget nisi tincidunt, rhoncus sapien eu, suscipit elit. Ut eu suscipit ante. Aliquam pulvinar libero in blandit placerat. Mauris aliquet sagittis ipsum at viverra. Maecenas turpis mauris, euismod et ligula non, eleifend placerat leo. Aenean ut nulla volutpat, pharetra arcu sit amet, faucibus nisl.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum semper elit felis, ac dictum elit consequat sit amet. Mauris neque risus, vulputate nec risus eu, porttitor scelerisque justo.  
+        
+        \begin{figure}[!h]
+        	\centering
+        	\begin{minipage}[t]{5cm}
+        		\centering
+        		\includegraphics[scale=0.1]{rpi_goldpin.jpg}
+        		\caption{Raspberry Pi z przylutowanymi złączami goldpin}
+        	\end{minipage}
+        	\hspace{3cm}
+        	\begin{minipage}[t]{5cm}
+        		\centering
+        		\includegraphics[scale=0.1]{rpi_lcd.jpg}
+        		\caption{Połączenie Raspberry Pi z wyswietlaczem dotykowym}
+        	\end{minipage}
+        \end{figure}
+        
         \begin{figure}[H]
-        \begin{center}
-            \includegraphics[width=0.5\textwidth]{mounted_pcb.jpg}
-            \caption{Zmontowana PCB}
-        \end{center}
+            \begin{center}
+            \includegraphics[width=0.6\textwidth]{poloczona_zoom.jpg}
+            \caption{Moduł wykonawczy połączony z Rapsberry Pi}
+            \end{center}
         \end{figure}
+        
         \newpage
         \subsection{Elektronika wykonawcza}
             \subsubsection{Sterownik paska LED}
-                Protoypowanie modułu rozpoczęto od budowy sterownika paska ledowego, który sterowany był za pomocą prostego 8-bitowego mikrokontorlera \emph{Atmega 168P}. Sterownik składa się z trzech identycznych kanałów, osobnego dla każdego koloru paska. 
+                Protoypowanie modułu rozpoczęto od budowy sterownika paska ledowego, który sterowany był z prostego 8-bitowego mikrokontorlera \emph{Atmega 168P}. 
+                Sterownik składa się z trzech identycznych kanałów, osobnego dla każdego koloru paska. 
                 \begin{figure}[H]
                 \begin{center}
                     \includegraphics[width=0.45\textwidth]{sterownik.png}
                     \caption{Schemat trzykanałowego sterownika paska LED}
                 \end{center}
                 \end{figure}
-                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej, napięcia, tranzysor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, żę między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w w formie ciepła. 
+                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej, napięcia, tranzysor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, żę między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w formie ciepła. 
         
             \subsubsection{Wyjścia przekaźnikowe}
+            Maecenas non massa purus. Sed quis arcu sed lorem maximus luctus quis at ante. Donec porta turpis nec imperdiet posuere. Duis auctor lectus id blandit fermentum. Maecenas sem ex, placerat mollis nulla in, placerat fringilla mauris. Nunc molestie euismod massa, sit amet auctor ligula semper nec. Phasellus metus nisl, venenatis suscipit efficitur in, fringilla ut urna. 
                 \begin{figure}[H]
                 \begin{center}
                     \includegraphics[width=0.6\textwidth]{przekazniki.png}
@@ -143,6 +170,7 @@
                 \end{center}
                 \end{figure}
         \subsection{Przetwornica napięcia}
+        Na płytce znajudje się również przetwornica napięcia, która służy zasileniu Raspberry Pi Zero. Zdecydowano się na wykorzystanie \emph{ON Semiconductor MC34063A} z uwagi na dużą dostępność, niską cenę oraz łatwość użycia. 
                 \begin{figure}[H]
                 \begin{center}
                     \includegraphics[width=0.6\textwidth]{psu.png}
@@ -152,10 +180,38 @@
         \subsection{Płytka drukowana}
             Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
     \section{Instrukcja montażu}
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum lectus nunc, id aliquet metus tempus quis. Phasellus tincidunt tellus dolor, ut semper est lobortis quis. Quisque imperdiet varius lectus ac tempus. Vivamus molestie, dui in porttitor ornare, quam urna viverra tortor, a placerat diam elit et nibh. Proin ut facilisis nulla, non porttitor massa. Quisque ut aliquam dolor. Donec risus ligula, sagittis sit amet mi ac, venenatis hendrerit tortor. In tincidunt mattis odio nec euismod. Duis vitae hendrerit libero. Nulla bibendum suscipit justo ac tempus. Nunc finibus porta efficitur. Suspendisse sit amet tempor erat. Morbi id posuere justo. Curabitur sed quam sed nisi hendrerit vehicula.
+
     \section{Sprawdzanie modułu}
-            Płytka 
-
-
+            Płytka i opis znajdujący się na niej został zaprojektowany tak, aby w łatwy sposób można było sprawdzić poprawność działania modułu. 
+            
+            \subsubsection{Sprawdzanie poprawności działania samego modułu wykonawczego}
+            Dolna strona PCB zawiera dwa rodzaje oznaczeń, które służą do sprawdzenie poprawności działania elektroniki płytki:
+            \begin{itemize}
+                \item oznaczaczenia \emph{G*} mówiące do którego pinu mikroprosesora podłączone jest dany element modułu, ma to uławtić programowanie i sprawdzanie poprawności konfiguracji pryferiów,
+                \item oznaczenia \emph{P*} będące punktami testowymi.
+            \end{itemize}
+               \begin{figure}[H]
+                \begin{center}
+                    \includegraphics[width=0.6\textwidth]{pcb_dol_zaz.png}
+                    \caption{Punkty kontroli poprawności działania}
+                \end{center}
+                \end{figure}
+            Na płytce znajduje się, również oznaczenie mówiące o poprawnych wartościach między punktami kontrolnymi \emph{P1} - \emph{P4} oraz napięcia, które należy podać między masą a punktami \emph{P5} - \emph{P6}.
+            Sprawdzenie poprawności montażu elemtów prztwronicy napięcia, odbywa się przez pomiar napięcia między punktami P1 P2, napięcie to powinnow wynosić 5V z xxx procentową dokładnością.
+            Należy również sprawdzić wartość napięcia między punktami P3 P4, które powinno wynosić XXXXXX.
+            W celu sprawdzenia sterownika paska LED należy podać 12V kolejno między masą, punktami P5.1, P5.2, P5.3 i mierzyć napięcie na odpowiadających wyjściach sterownika. Moduł działa poprawnie jeśli napięcie na wyjściu każdego z kanałów będzie równe 12V.
+            Sprawdzeie wyjść przekaźnikowych odbywa się przez podnie 3.3V, z punktu P4, na punkty P6.1 i P6.2.
+            Przekaźnik w momencie przełączania wydaje wyraźny dźwięk (kliknięcie), więc brak wystąpienia tego dźwięku w chwili podłączenia napięcia oznacza niepoprawne działanie. Kolejnym etapem weryfikacji jest zmierzenie napięcia na wyjściach przekaźnikowych przy zwartych P6.1 lub P6.2 z P4, powinno ono być równe 12V.
+            
+            \subsubsection{Sprawdzenie poprawności działania całości modułu}
+            
+            \section{Dokumentacja oprogramowania}
+                \subsection{Interfejs graficzny}
+                \subsection{Obsługa peryferiów}
+                \subsection{Logika}
+            
+            
 %
 % \chapter{Dokumentacja oprogramowania}
 %     \section{Model funkcjonalny oprogramowania}
