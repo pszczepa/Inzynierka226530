@@ -177,6 +177,10 @@
                     \caption{Schemat przetwornicy napięć}
                 \end{center}
                 \end{figure}
+                
+        \subsection{Elektronika dodatkowa}
+        
+        
         \subsection{Płytka drukowana}
             Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
     \section{Instrukcja montażu}
@@ -203,22 +207,28 @@
             W celu sprawdzenia sterownika paska LED należy podać 12V kolejno między masą, punktami P5.1, P5.2, P5.3 i mierzyć napięcie na odpowiadających wyjściach sterownika. Moduł działa poprawnie jeśli napięcie na wyjściu każdego z kanałów będzie równe 12V.
             Sprawdzeie wyjść przekaźnikowych odbywa się przez podnie 3.3V, z punktu P4, na punkty P6.1 i P6.2.
             Przekaźnik w momencie przełączania wydaje wyraźny dźwięk (kliknięcie), więc brak wystąpienia tego dźwięku w chwili podłączenia napięcia oznacza niepoprawne działanie. Kolejnym etapem weryfikacji jest zmierzenie napięcia na wyjściach przekaźnikowych przy zwartych P6.1 lub P6.2 z P4, powinno ono być równe 12V.
+            \\* Opisane metody testowania nie wymagają podłączenie Raspberry Pi. 
             
             \subsubsection{Sprawdzenie poprawności działania całości modułu}
+                \begin{figure}[H]
+                \begin{center}
+                    \includegraphics[width=0.5\textwidth]{dip_zoom.jpg}
+                    \caption{Punkty kontroli poprawności działania}
+                \end{center}
+                \end{figure}
             
             \section{Dokumentacja oprogramowania}
+                \begin{figure}[H]
+                \begin{center}
+                    \includegraphics[width=0.5\textwidth]{inz_diag.png}
+                    \caption{Schemat warstowy oprogramowania}
+                \end{center}
+                \end{figure}
+                
                 \subsection{Interfejs graficzny}
                 \subsection{Obsługa peryferiów}
                 \subsection{Logika}
             
-            
-%
-% \chapter{Dokumentacja oprogramowania}
-%     \section{Model funkcjonalny oprogramowania}
-%     \textcolor{red}{diagram uml, opis interfejsów}
-%     \section{Opis kodu interfejsu graficznego}
-%     \textcolor{red}{krótki opis podstawowych zapisów syntaktycznych qml na przykładzie kodu z projektu}
-%
 \chapter{Wnioski i uwagi}
 \thispagestyle{fancy}
   \cite{CleanCode,EffectiveModern,RpiBeginner}
