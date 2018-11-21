@@ -205,9 +205,16 @@
                 \caption{Schemat diod sygnalizacyjnych} 
             \end{center}
             \end{figure}
-            
+        Moduł posiada 3 diody sygnalizacyjne służące do informowania użytkownika o błędach lub mogące być wykorzystane przy sprawdzaniu modułu. Rezystory R12, R15, R16 dobrano tak aby intesywność świecenia diod nie sprawawiała dyskonfortu serwisantowi badającemu sterownik.
         
         \subsection{Wyświetlacz dotykowy}
+            \begin{figure}[H]
+            \begin{center}
+                \includegraphics[width=0.5\textwidth]{wyswietlacz.jpg}
+                \caption{Wyświetlacz dotykowy używany w module} 
+            \end{center}
+            \end{figure}
+            tft 4cale spi waveshare połączenie z rpi patent
         
         \subsection{Płytka drukowana}
             Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
@@ -241,23 +248,37 @@
                 \begin{figure}[H]
                 \begin{center}
                     \includegraphics[width=0.5\textwidth]{dip_zoom.jpg}
-                    \caption{Punkty kontroli poprawności działania}
+                    \caption{Przełącznik trybów i diody sygnalizacyjne}
                 \end{center}
                 \end{figure}
+            Sterownik udostępnia 3 tryby serwisowe wybierana za pomocą przełącznika suwakowego.
+            Oprogramowanie sterownika odczytuje wartości, wejść do których podłączony jest przełącznik, w momencie startu systemu, więc aby włączyć tryb serwisowy należy odłączyć zasilianie modułu, wybrać tryb i dopiero podłączyć zasilanie. Nie jest dozwolnoe przełączenie dwóch lub więcej przełączników, w takim przypadku system zignoruje te informacje i uruchomi moduł w trybie pracy normalnej. Przejście modułu w tryb serwisowy sygnalizowane jest ciągłym podświetleniem diody \emph{LED3}.
+            
+            Dostępne tryby:
+            \begin{enumerate}
+                \item przełącznik w pozycji 1 - w trybie tym sterownik będzie włączał i wyłączał z odstępem 1 sekundy wyjścia modułu w kolejnośc : kanał czerwony, kanał zielony, kanał niebieski, wyjście przekaźnikowe 1, wyjście przekaźnikowe 2. Tryb ten pozwala sprawdzić poprawność działania elektroniki wyjściowej oraz podłączenia modułu Raspberry Pi.
+                
+                \item przełącznik w pozycji 2 - tryb służy do sprawdzenia poprawności działania wyświetlacza, czyli poprawności wyświelania kolorów, czasu odświeżania dokładności powierzchni dotykowej.
+                Na ekranie wyświeli się licznik inkrementujący swoją warość co 200ms, napis "TEST" w 3 rozmiarach oraz tło aplikacji będzie zmieniało kolory z częstotliwością 500ms w kolejności: czerwony, zielony, niebieski, biały. Ponadto na ekranie widoczne będą 4 pola dotykowe, których naciśnięcie będzie aktywowało diodę \emph{LED2}, w przypadku wykrycia dotyku poza, którymś z tych pól załączona zostanie dioda \emph{LED1}. 
+                
+                \item przełącznik w pozycji 3 - tryb służący do kontroli obciążenia procesora systemu, zajętości RAM-u oraz temperatury na procesorze. Informacje te będą wyświetlane na ekranie. Ponadto zostanie wyświelony plik kontrolny z poprzedniego uruchomienia modułu.
+            \end{enumerate}
+                
             \newpage
             
             \section{Dokumentacja oprogramowania}
                 \begin{figure}[H]
                 \begin{center}
                     \includegraphics[width=0.5\textwidth]{inz_diag.png}
-                    \caption{Schemat przepływu informacji w oprogramowaniu}
+                    \caption{Schemat przepływu informacji w oprogramowaniu w trybie normalnego użytku}
                 \end{center}
                 \end{figure}
                 
                 \subsection{Interfejs graficzny}
-                \subsection{Obsługa peryferiów}
-                \subsection{Logika}
+                \subsection{}
+                \subsection{Opis scenariuszy programowych}
                 \subsection{Wykorzystane biblioteki}
+                \subsection{}
             
 \chapter{Wnioski i uwagi}
 \thispagestyle{fancy}
