@@ -104,6 +104,15 @@
 \chapter{Dokumentacja użytkownika}
 \thispagestyle{fancy}
     \section{Podłączanie zasilania i urządzeń wykonawczych}
+    Moduł zasilany jest napięciem 12V i nie posiada zabezpieczenia przeciw odwrotnej polaryzacji zasilania. więc błędne podłączenie zasilacza może uszkodzić sterownik. \\*
+    Maksymalna oświelenia podłączonego do wyjść wynosi:
+    \begin{itemize}
+        \item sumarycznie dla wyjść sterownika paska led : 00W, czyli dla każdego kanału 00W,
+        \item dla każdego z wyjść przekaźnikowych : 100 W
+    \end{itemize}
+    Instalator musi pamiętać, że podłączone obciążenie nie może przekraczać maksymalnej mocy zasilacza ponadto maksymalny prąd zasilacz powinien wynosić przynajmnej 750mA, więcej niż potrzebuje tego obicążenie, gdyż należy doliczyć zapotrzebowanie Raspberry Pi z wyświetlaczem. Podane 750mA jest wartością bezpieczną i nie znaczy to, że moduł pobiera w trakcie swojego działania taki prąd. \\*
+    Zasilacz należy podłączyć do złącza \emph{J5}, wyjścia przkaźnikowe są oznaczone symbolami \emph{J3}, \emph{J4}, a sterownik paska ledowego \emph{J1J2}. Sposób podłączenie paska led jest oznaczony bezpośrednio na płytce. 
+    
     \section{Opis interfejsu graficznego}
     \section{Konfiguracja funkcji}
         \subsection{Tworzenie scen}
@@ -131,15 +140,16 @@
         	\begin{minipage}[t]{5cm}
         		\centering
         		\includegraphics[scale=0.1]{rpi_goldpin.jpg}
-        		\caption{Raspberry Pi z przylutowanymi złączami goldpin}
+        		\caption{Raspberry Pi z przylutowanymi złączami goldpin} \label{fig:rpi1} 
         	\end{minipage}
         	\hspace{3cm}
         	\begin{minipage}[t]{5cm}
         		\centering
         		\includegraphics[scale=0.1]{rpi_lcd.jpg}
-        		\caption{Połączenie Raspberry Pi z wyswietlaczem dotykowym}
+        		\caption{Połączenie Raspberry Pi z wyswietlaczem dotykowym} \label{fig:rpi_lcd} 
         	\end{minipage}
         \end{figure}
+        \newpage
         
         \begin{figure}[H]
             \begin{center}
@@ -164,10 +174,11 @@
                 \newpage
         
             \subsubsection{Wyjścia przekaźnikowe}
-            Maecenas non massa purus. Sed quis arcu sed lorem maximus luctus quis at ante. Donec porta turpis nec imperdiet posuere. Duis auctor lectus id blandit fermentum. Maecenas sem ex, placerat mollis nulla in, placerat fringilla mauris. Nunc molestie euismod massa, sit amet auctor ligula semper nec. Phasellus metus nisl, venenatis suscipit efficitur in, fringilla ut urna. 
+            Moduł wyposażono również w dwa wyjścia przekaźnikowe pozwalające użytkownikowi na sterowanie stanem m.in. takich peryferiów jak: jednokolorowy pasek ledowy, żarówka led. W projekcie wykorzystano przekaźniki \emph{BLOW JQC-3F 12VDC}, dopuszają one przełączanie 10A prądu stałego przy 12V.
+            Moc cewki wybranych przekaźników wynosi 0.45W, więc w celu ich sterowania należało użyć tranzystor MOSFET. Niezbędnym elementem obwodu sterownikia trnazystorowego przekaźników jest dioda, \emph{D3}, \emph{D4}, zabezpieczająca tranzystor przed energią znajdującą się w cewce przekaźnika, który zostaje z niej wydalona pod wpływem zapadania się pola magnetycznego.
                 \begin{figure}[H]
                 \begin{center}
-                    \includegraphics[width=0.7\textwidth]{przekazniki.png}
+                    \includegraphics[width=0.75\textwidth]{przekazniki.png}
                     \caption{Schemat wyjść przekaźnikowych}
                 \end{center}
                 \end{figure}
@@ -175,10 +186,11 @@
         Na płytce znajudje się również przetwornica napięcia, która służy zasileniu Raspberry Pi Zero. Zdecydowano się na wykorzystanie \emph{ON Semiconductor MC34063A} z uwagi na dużą dostępność, niską cenę oraz łatwość użycia. Moduły MC34063 pracują w zakresie napięcia wejściowego od 3V do 40V i mogą być skonfigurowane w trybie obniżania, podwyższania lub odwracania napięcia. Maksymalny prąd wyjściowy to 1.5A, jest to wartość przekraczająca potrzeby przy zasilaniu większości mikroprocesorów. Sterowanie parametrami układu DC-DC odbywa się przez dobór wartości elementów pasywnych. Nota katalogowa układu dostarcza potrzebne w wzory potrzebne do obliczenia wartości elementów.
                 \begin{figure}[H]
                 \begin{center}
-                    \includegraphics[width=0.7\textwidth]{psu.png}
+                    \includegraphics[width=0.75\textwidth]{psu.png}
                     \caption{Schemat przetwornicy napięć}
                 \end{center}
                 \end{figure}
+                
         Parametry wyjściowe układu wynoszą:
         \begin{itemize}
             \item Napięcie wejściowe : 12V
@@ -205,22 +217,38 @@
                 \caption{Schemat diod sygnalizacyjnych} 
             \end{center}
             \end{figure}
-        Moduł posiada 3 diody sygnalizacyjne służące do informowania użytkownika o błędach lub mogące być wykorzystane przy sprawdzaniu modułu. Rezystory R12, R15, R16 dobrano tak aby intesywność świecenia diod nie sprawawiała dyskonfortu serwisantowi badającemu sterownik.
+        Moduł posiada 3 diody sygnalizacyjne służące do informowania użytkownika o błędach lub mogące być wykorzystane przy sprawdzaniu modułu. Rezystory R12, R15, R16 dobrano tak aby intesywność świecenia diod nie sprawawiała dyskomfortu serwisantowi badającemu sterownik.
         
         \subsection{Wyświetlacz dotykowy}
             \begin{figure}[H]
             \begin{center}
-                \includegraphics[width=0.5\textwidth]{wyswietlacz.jpg}
+                \includegraphics[width=0.6\textwidth]{wyswietlacz.jpg}
                 \caption{Wyświetlacz dotykowy używany w module} 
             \end{center}
             \end{figure}
             tft 4cale spi waveshare połączenie z rpi patent
+             Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
+            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
+            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jed
         
         \subsection{Płytka drukowana}
             Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
+            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
+            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jed
+            
     \section{Instrukcja montażu}
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam interdum lectus nunc, id aliquet metus tempus quis. Phasellus tincidunt tellus dolor, ut semper est lobortis quis. Quisque imperdiet varius lectus ac tempus. Vivamus molestie, dui in porttitor ornare, quam urna viverra tortor, a placerat diam elit et nibh. Proin ut facilisis nulla, non porttitor massa. Quisque ut aliquam dolor. Donec risus ligula, sagittis sit amet mi ac, venenatis hendrerit tortor. In tincidunt mattis odio nec euismod. Duis vitae hendrerit libero. Nulla bibendum suscipit justo ac tempus. Nunc finibus porta efficitur. Suspendisse sit amet tempor erat. Morbi id posuere justo. Curabitur sed quam sed nisi hendrerit vehicula.
+    Montaż układu powinno rozpocząć się od wizualnego sprawdzenia poprawności wykonania płytki drukowanej, ważnym jest sprawdzenie czy wszystkie punkty lutownicze są poprawnie pokryte i czy ścieżki nie wyglądają na uszkodzone, np. w transporcie.
+    Pierwszym krokiem jest przylutowaie przetwornicy napięć, ponieważ jest to najmniejszy element i jej montaż może być później utrudniony przez sąsiadujące elementy. Dalej należy przylutować transoptory \emph{A1}, \emph{A2}, \emph{A3}.  Następnie w dowolnej kolejności można przylutować: rezystory \emph{R1} do \emph{R21}, kondensatory \emph{C0}, \emph{Ct}, \emph{C2}, diody \emph{D1}, \emph{D3}, \emph{D4}, tranzystory \emph{Q1}, \emph{Q2}, \emph{Q3}, \emph{Q5}, \emph{Q6}, diody led \emph{LED1}, \emph{LED2}, \emph{LED3}. Po wykonaniu tych czynności należy przylutować złącze \emph{JP1}, przełącznik suwakowy \emph{SW1}, złącza ARK \emph{J1} - \emph{J5}. Ostatnimi elementami na górnej warstwie są przekaźniki \emph{K2}, \emph{K3}. Na dolej warstwie płytki powinna znaleźć się cewka \emph{L1} i rezystor \emph{RSC}, tak jak jest to widoczne na \ref{fig:pcb_dol}. \\*
+    Złącza goldpin na Raspberry Pi powinne zostać polutowane tak aby piny od 27 do 40 były skierowane w kierunku przeciwnmy do mikroprocesora na płyce (patrz \ref{fig:rpi1}), pozostałe odwrotnie. 
+            \begin{figure}[H]
+            \begin{center}
+                \includegraphics[width=0.5\textwidth]{dol.jpg}
+                \caption{Dolna warstwa płytki} \label{fig:pcb_dol} 
+            \end{center}
+            \end{figure}
+    Montaż wyświetlacza dotykowego do płytki Raspberry Pi odbywa się przez wsunięciego w złącze goldpin, poprawny instalacja widoczna jest na \ref{fig:rpi_lcd}. Komunikacja płytki sterującej z płytką wykonawczą odbywa się przez 16-sto żyłowy kabel, który od strony płytki wykonawczej powinnien być zakończony damski złączem 2x8 goldpin, a na drugim końcu złączem 2x7 oraz dwoma przewodami, które muszą zostać przylutowane do pinów 3 (5V) i 4 (GND) na Raspberry Pi. 
 
+    \newpage
     \section{Sprawdzanie modułu}
             Płytka i opis znajdujący się na niej został zaprojektowany tak, aby w łatwy sposób można było sprawdzić poprawność działania modułu. 
             
@@ -251,19 +279,22 @@
                     \caption{Przełącznik trybów i diody sygnalizacyjne}
                 \end{center}
                 \end{figure}
-            Sterownik udostępnia 3 tryby serwisowe wybierana za pomocą przełącznika suwakowego.
-            Oprogramowanie sterownika odczytuje wartości, wejść do których podłączony jest przełącznik, w momencie startu systemu, więc aby włączyć tryb serwisowy należy odłączyć zasilianie modułu, wybrać tryb i dopiero podłączyć zasilanie. Nie jest dozwolnoe przełączenie dwóch lub więcej przełączników, w takim przypadku system zignoruje te informacje i uruchomi moduł w trybie pracy normalnej. Przejście modułu w tryb serwisowy sygnalizowane jest ciągłym podświetleniem diody \emph{LED3}.
+            Sterownik udostępnia 3 tryby serwisowe wybierane za pomocą przełącznika suwakowego.
+            Oprogramowanie sterownika odczytuje wartości, wejść do których podłączony jest przełącznik, w momencie startu systemu, więc aby włączyć tryb serwisowy należy odłączyć zasilanie modułu, wybrać tryb i podłączyć zasilanie. Nie jest dozwolnoe przełączenie dwóch lub więcej przełączników, w takim przypadku system zignoruje te informacje i uruchomi moduł w trybie pracy normalnej. Przejście modułu w tryb serwisowy sygnalizowane jest ciągłym podświetleniem diody \emph{LED3}.
             
             Dostępne tryby:
-            \begin{enumerate}
+            \begin{itemize}
                 \item przełącznik w pozycji 1 - w trybie tym sterownik będzie włączał i wyłączał z odstępem 1 sekundy wyjścia modułu w kolejnośc : kanał czerwony, kanał zielony, kanał niebieski, wyjście przekaźnikowe 1, wyjście przekaźnikowe 2. Tryb ten pozwala sprawdzić poprawność działania elektroniki wyjściowej oraz podłączenia modułu Raspberry Pi.
                 
                 \item przełącznik w pozycji 2 - tryb służy do sprawdzenia poprawności działania wyświetlacza, czyli poprawności wyświelania kolorów, czasu odświeżania dokładności powierzchni dotykowej.
                 Na ekranie wyświeli się licznik inkrementujący swoją warość co 200ms, napis "TEST" w 3 rozmiarach oraz tło aplikacji będzie zmieniało kolory z częstotliwością 500ms w kolejności: czerwony, zielony, niebieski, biały. Ponadto na ekranie widoczne będą 4 pola dotykowe, których naciśnięcie będzie aktywowało diodę \emph{LED2}, w przypadku wykrycia dotyku poza, którymś z tych pól załączona zostanie dioda \emph{LED1}. 
                 
                 \item przełącznik w pozycji 3 - tryb służący do kontroli obciążenia procesora systemu, zajętości RAM-u oraz temperatury na procesorze. Informacje te będą wyświetlane na ekranie. Ponadto zostanie wyświelony plik kontrolny z poprzedniego uruchomienia modułu.
-            \end{enumerate}
-                
+            \end{itemize}
+            
+            Wyłączenie trybu serwisowego jest możliwe dopiero po odłączniu zasilania i ustawieniu przełącznika serisowego do konfiguracji pracy standardowej.
+            Moduł ignoruje zmiany przełącznika suwakowego w czasie działania programów.
+            
             \newpage
             
             \section{Dokumentacja oprogramowania}
