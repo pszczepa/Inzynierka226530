@@ -60,7 +60,7 @@
     Zakres pracy obejmuje opracowanie materiałów produkcyjnych, oprogramowania oraz fizycznego modelu. W szczególności zakres pracy obejmuje: 
     \begin{itemize}
         \item zaprojektowanie elektroniki, 
-        \item budowę modułu sterownika oświetlenia,
+        \item zbudowanie modułu sterownika oświetlenia,
         \item stworzenie opiu i objaśnienia wykorzystanych technologii,
         \item wytworzenie oprogramowania oraz jego opisu funkcjonalnego,
         \item opracowanie dokumentacji technicznej modułu,
@@ -85,33 +85,38 @@
 \thispagestyle{fancy}
     \section{Raspberry Pi}
     Raspberry Pi jest serią jednopłytkowych komputerów opartych na rdzeniach ARM. Pod nazwą Raspberry Pi kryje się również olbżymia społeczność rozwijająca oprogomowanie, tworząca biblioteki i materiały edukacyjne.
-    W projekcie wykorzystano model \emph{Raspberry Pi Zero W V1.3} oparty na procesorze  \emph{Broadcom BCM2835 ARM11}. Moduł wyposażony jest m.in. w 512MB pamięci RAM, moduł WiFi, moduł Bluetooth, port miniHDMI. DZIĘKI ?? dużymi możliwościami technicznymi oraz niskiej cenie, modułu ten jest powszechnie wykorzystywany przy prototypowaniu urządzeń elektronicznych IoT.
-    \textcolor{red}{(jeszcz coś o linuxie)}
-    \section{Język C++}
-       \textcolor{red}{zalety względem czystego c , różnice między pythonem}
-       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vulputate nulla quis magna iaculis, vitae dignissim turpis malesuada. Nullam lacus eros, fermentum eu tristique at, aliquam ut nibh. Donec in porta dolor. Etiam eu nunc non dui auctor lobortis a eu nunc. Vivamus euismod magna nec nulla auctor porta. Pellentesque semper sapien id mauris eleifend posuere. Pellentesque eget varius justo. Ut molestie nulla mauris, eget pretium quam ultricies in. In posuere tristique nibh.
-
-    Pellentesque libero velit, pellentesque ac vestibulum nec, sollicitudin nec nibh. Curabitur eget lectus dolor. Ut non est vel dui elementum dignissim eget ultricies leo. Fusce sit amet dictum lorem, vel mattis nulla. Duis ut neque semper, egestas purus sit amet, gravida massa. Sed tellus est, rhoncus sed rutrum id, imperdiet non erat. Sed gravida cursus efficitur. Fusce vulputate posuere magna sed rhoncus. Integer convallis ex eu lacus consectetur, eu fermentum urna feugiat. Maecenas et tellus risus. Vivamus eget consequat quam. Vivamus accumsan tempus ante, vitae dignissim odio convallis nec. Nunc molestie sit amet ex pulvinar volutpat.
-
-    Nulla ultricies enim ut auctor viverra. Nulla facilisi. Donec orci sapien, faucibus eu sem eu, bibendum placerat sem. Curabitur condimentum sed leo ac hendrerit. Aliquam sed elementum velit. Donec sagittis felis magna, vel fringilla odio dictum eu. Cras vel accumsan nunc. Etiam dignissim ipsum vel lacus eleifend, sed posuere ante tincidunt. Duis tempor lorem vitae pellentesque lobortis.
+    W projekcie wykorzystano model \emph{Raspberry Pi Zero W V1.3} oparty na procesorze  \emph{Broadcom BCM2835 ARM11}. Moduł wyposażony jest m.in. w 512MB pamięci RAM, moduł WiFi, moduł Bluetooth, port miniHDMI. Z uwagi na  duże możliwości techniczne oraz niską cenę, modułu ten jest powszechnie wykorzystywany przy prototypowaniu urządzeń elektronicznych IoT.
     
+    \section{Język C++}
+    Język C++ powstawł w roku 1979 stworzony przez Bjarne Stroustrup'a jako rozszerzenie języka, od tego czasu C++ doczekał się kilku standardów i od 2011 roku co 3 lata wydawana jest jego nowa wersja. C++ osiągną olbrzymią popularność dzięki swojej uniwersalności. W komercjnych zastosowaniach przy tworzeniu oprogramowania na wbudowane systemy wbudowana często wypiera używanie czystego języka~C. C++ pozwala na tworzenie kodu zarówno nisko jak i wyskopoziomowego. Kod może być zarówno zorientowany obiektowo jak również czysto procedulany. 
+    enkapsulacja
+    polimorfizm
+    biblioteki
+    boost
+    
+    
+    \newpage
     \section{Biblioteka QT i QML}
-    \textcolor{red}{rys historyczny, krótki opis, zalety QML}
-    Fusce sed arcu tristique, pretium quam id, eleifend mi. Vestibulum luctus ex tristique dapibus condimentum. Morbi non fermentum sem. Maecenas sit amet cursus quam, id vestibulum massa. Vivamus vel risus et lacus tempor lobortis. Maecenas aliquet lorem id venenatis euismod. Aliquam leo magna, convallis et lorem quis, semper blandit urna. Proin vel mi at urna scelerisque ultrices iaculis id odio. Suspendisse ornare est mi, sed faucibus ex tristique id. Ut porta efficitur auctor. Ut arcu justo, ultrices non tempor nec, cursus ac nisl. Nulla ac sem erat.
-
-    Duis magna turpis, luctus vel interdum ac, pellentesque dapibus nunc. Aenean mollis libero sapien, et tristique neque interdum quis. Donec ullamcorper lectus nec eros lacinia, sit amet euismod quam venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam porta leo orci, eu tempus ex tristique vitae.
+    QT jest zestawem bibliotek, których głównym celem jest tworzenie interfejsów graficznych aplikacji komputerowych. Ponadto QT dostarcza wiele narzędzi programistycznych pomagających rozwijać oprogramowanie. Oprócz zastosowań komputerowych QT daje możliwości tworzenia aplikacji na urządzenia wbudowane i jest powszechnie używane przez takie firmy jak: LG, Mercedes-Benz.
+ 
 %
 \chapter{Dokumentacja użytkownika}
 \thispagestyle{fancy}
     \section{Podłączanie zasilania i urządzeń wykonawczych}
     Moduł zasilany jest napięciem 12V i nie posiada zabezpieczenia przeciw odwrotnej polaryzacji zasilania. więc błędne podłączenie zasilacza może uszkodzić sterownik. \\*
-    Maksymalna oświelenia podłączonego do wyjść wynosi:
+    Maksymalna moc oświelenia podłączonego do wyjść wynosi:
     \begin{itemize}
         \item sumarycznie dla wyjść sterownika paska led : 00W, czyli dla każdego kanału 00W,
         \item dla każdego z wyjść przekaźnikowych : 100 W
     \end{itemize}
     Instalator musi pamiętać, że podłączone obciążenie nie może przekraczać maksymalnej mocy zasilacza ponadto maksymalny prąd zasilacz powinien wynosić przynajmnej 750mA, więcej niż potrzebuje tego obicążenie, gdyż należy doliczyć zapotrzebowanie Raspberry Pi z wyświetlaczem. Podane 750mA jest wartością bezpieczną i nie znaczy to, że moduł pobiera w trakcie swojego działania taki prąd. \\*
     Zasilacz należy podłączyć do złącza \emph{J5}, wyjścia przkaźnikowe są oznaczone symbolami \emph{J3}, \emph{J4}, a sterownik paska ledowego \emph{J1J2}. Sposób podłączenie paska led jest oznaczony bezpośrednio na płytce. 
+        \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.65\textwidth]{podlaczone.jpg}
+            \caption{Przykład podłączenia zasilania, paska led oraz żarówki led}
+        \end{center}
+        \end{figure}
     
     \section{Opis interfejsu graficznego}
     \section{Konfiguracja funkcji}
@@ -149,6 +154,7 @@
         		\caption{Połączenie Raspberry Pi z wyswietlaczem dotykowym} \label{fig:rpi_lcd} 
         	\end{minipage}
         \end{figure}
+        Dzięki takiej budowie elementy wydzielające ciepło, takie jak tranzysory i procesor, mogą być od siebie oddalone. 
         \newpage
         
         \begin{figure}[H]
@@ -169,7 +175,7 @@
                     \caption{Schemat trzykanałowego sterownika paska LED}
                 \end{center}
                 \end{figure}
-                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej, napięcia, tranzysor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, żę między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w formie ciepła. 
+                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej, napięcia, tranzysor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, żę między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w formie ciepła, a co za tym idzie maksymalny prąd jaki tranzysor może przewodzić bez przegrzewania~się.
         
                 \newpage
         
@@ -227,14 +233,14 @@
             \end{center}
             \end{figure}
             tft 4cale spi waveshare połączenie z rpi patent
-             Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
-            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
-            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jed
+            W projekcie zdecydowano się na użycie gotowego modułu wyświetlacza dotykowego 
+            \emph{Waveshare}. Jego rozmiar to 95 x 61 mm i posiada rozdzielczość 320x480 pikseli. Z uwagi na te dwie własności, graficzny interfejs użytkownika został zaprojektowany tak aby  
+
         
         \subsection{Płytka drukowana}
             Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
-            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
-            Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jed
+            Płytka ma wymiary 90x62mm, jest 
+            Seria prototypowa płytek została 
             
     \section{Instrukcja montażu}
     Montaż układu powinno rozpocząć się od wizualnego sprawdzenia poprawności wykonania płytki drukowanej, ważnym jest sprawdzenie czy wszystkie punkty lutownicze są poprawnie pokryte i czy ścieżki nie wyglądają na uszkodzone, np. w transporcie.
@@ -286,8 +292,8 @@
             \begin{itemize}
                 \item przełącznik w pozycji 1 - w trybie tym sterownik będzie włączał i wyłączał z odstępem 1 sekundy wyjścia modułu w kolejnośc : kanał czerwony, kanał zielony, kanał niebieski, wyjście przekaźnikowe 1, wyjście przekaźnikowe 2. Tryb ten pozwala sprawdzić poprawność działania elektroniki wyjściowej oraz podłączenia modułu Raspberry Pi.
                 
-                \item przełącznik w pozycji 2 - tryb służy do sprawdzenia poprawności działania wyświetlacza, czyli poprawności wyświelania kolorów, czasu odświeżania dokładności powierzchni dotykowej.
-                Na ekranie wyświeli się licznik inkrementujący swoją warość co 200ms, napis "TEST" w 3 rozmiarach oraz tło aplikacji będzie zmieniało kolory z częstotliwością 500ms w kolejności: czerwony, zielony, niebieski, biały. Ponadto na ekranie widoczne będą 4 pola dotykowe, których naciśnięcie będzie aktywowało diodę \emph{LED2}, w przypadku wykrycia dotyku poza, którymś z tych pól załączona zostanie dioda \emph{LED1}. 
+                \item przełącznik w pozycji 2 - tryb służy do sprawdzenia poprawności działania wyświetlacza, w szczególności poprawności wyświelania kolorów, czasu odświeżania dokładności powierzchni dotykowej.
+                Na ekranie wyświeli się licznik inkrementujący swoją wartość od 0 do 10000 co 200ms, napis "TEST" w 3 rozmiarach oraz tło aplikacji będzie zmieniało kolory z częstotliwością 500ms w kolejności: czerwony, zielony, niebieski, biały. Ponadto na ekranie widoczne będą 4 pola dotykowe, których naciśnięcie będzie aktywowało diodę \emph{LED2}, w przypadku wykrycia dotyku poza, którymś z tych pól załączona zostanie dioda \emph{LED1}. 
                 
                 \item przełącznik w pozycji 3 - tryb służący do kontroli obciążenia procesora systemu, zajętości RAM-u oraz temperatury na procesorze. Informacje te będą wyświetlane na ekranie. Ponadto zostanie wyświelony plik kontrolny z poprzedniego uruchomienia modułu.
             \end{itemize}
@@ -304,10 +310,20 @@
                     \caption{Schemat przepływu informacji w oprogramowaniu w trybie normalnego użytku}
                 \end{center}
                 \end{figure}
+                \newpage
                 
                 \subsection{Interfejs graficzny}
                 \subsection{}
+                \newpage
+                
                 \subsection{Opis scenariuszy programowych}
+                    \subsubsection{Start modułu}
+                        \begin{figure}[H]
+                        \begin{center}
+                            \includegraphics[width=0.7\textwidth]{startup.png}
+                            \caption{Schemat blokowy startu modułu}
+                        \end{center}
+                        \end{figure}
                 \subsection{Wykorzystane biblioteki}
                 \subsection{}
             
