@@ -55,7 +55,7 @@
     Oświetlenie LED stanowi znaczącą część rynku elektroniki konsumenckiej i w ciągu kilkunastu lat wyparła prawie całkowicie z użytku codziennego wolframowe żarówki i lampy wyładowcze (potocznie zwane świetlówkami). Popularność technologii LED jest spowodowana głównie atrakcyjnymi cenami produktów i znacząco większą sprawnością elektryczną oraz co za tym idzie niższym zużyciem energii elektrycznej.
     
     \section{Cel i zakres pracy}
-    Celem pracy jest stworzenie opisu powstawania, dokumentacji użytkownika i dokumentacji technicznej nowoczesnego sterownika oświetlenia LED opartego na platformie mikrokontrolerowej.
+    Celem pracy jest stworzenie opisu powstawania, dokumentacji użytkownika i dokumentacji technicznej nowoczesnego sterownika oświetlenia LED opartego na platformie~ mikrokontrolerowej.
     
     Zakres pracy obejmuje opracowanie materiałów produkcyjnych, oprogramowania oraz fizycznego modelu. W szczególności zakres pracy obejmuje: 
     \begin{itemize}
@@ -86,18 +86,20 @@
     \section{Raspberry Pi}
     Raspberry Pi jest serią jednopłytkowych komputerów opartych na rdzeniach ARM. Pod nazwą Raspberry Pi kryje się również olbżymia społeczność rozwijająca oprogomowanie, tworząca biblioteki i materiały edukacyjne.
     W projekcie wykorzystano model \emph{Raspberry Pi Zero W V1.3} oparty na procesorze  \emph{Broadcom BCM2835 ARM11}. Moduł wyposażony jest m.in. w 512MB pamięci RAM, moduł WiFi, moduł Bluetooth, port miniHDMI. Z uwagi na  duże możliwości techniczne oraz niską cenę, modułu ten jest powszechnie wykorzystywany przy prototypowaniu urządzeń elektronicznych IoT.
+    \textcolor{red}{Linux}
     
     \section{Język C++}
     Język C++ powstawł w roku 1979 stworzony przez Bjarne Stroustrup'a jako rozszerzenie języka, od tego czasu C++ doczekał się kilku standardów i od 2011 roku co 3 lata wydawana jest jego nowa wersja. C++ osiągną olbrzymią popularność dzięki swojej uniwersalności. W komercjnych zastosowaniach przy tworzeniu oprogramowania na wbudowane systemy wbudowana często wypiera używanie czystego języka~C. C++ pozwala na tworzenie kodu zarówno nisko jak i wyskopoziomowego. Kod może być zarówno zorientowany obiektowo jak również czysto procedulany. 
-    enkapsulacja
+     \textcolor{red}{enkapsulacja
     polimorfizm
     biblioteki
-    boost
+    boost}
     
     
     \newpage
     \section{Biblioteka QT i QML}
     QT jest zestawem bibliotek, których głównym celem jest tworzenie interfejsów graficznych aplikacji komputerowych. Ponadto QT dostarcza wiele narzędzi programistycznych pomagających rozwijać oprogramowanie. Oprócz zastosowań komputerowych QT daje możliwości tworzenia aplikacji na urządzenia wbudowane i jest powszechnie używane przez takie firmy jak: LG, Mercedes-Benz.
+    \textcolor{red}{qml }
  
 %
 \chapter{Dokumentacja użytkownika}
@@ -106,10 +108,10 @@
     Moduł zasilany jest napięciem 12V i nie posiada zabezpieczenia przeciw odwrotnej polaryzacji zasilania. więc błędne podłączenie zasilacza może uszkodzić sterownik. \\*
     Maksymalna moc oświelenia podłączonego do wyjść wynosi:
     \begin{itemize}
-        \item sumarycznie dla wyjść sterownika paska led : 00W, czyli dla każdego kanału 00W,
-        \item dla każdego z wyjść przekaźnikowych : 100 W
+        \item sumarycznie dla wyjść sterownika paska led : \textbf{00}W, czyli dla każdego kanału \textbf{00}W,
+        \item dla każdego z wyjść przekaźnikowych : \textbf{100} W
     \end{itemize}
-    Instalator musi pamiętać, że podłączone obciążenie nie może przekraczać maksymalnej mocy zasilacza ponadto maksymalny prąd zasilacz powinien wynosić przynajmnej 750mA, więcej niż potrzebuje tego obicążenie, gdyż należy doliczyć zapotrzebowanie Raspberry Pi z wyświetlaczem. Podane 750mA jest wartością bezpieczną i nie znaczy to, że moduł pobiera w trakcie swojego działania taki prąd. \\*
+    Instalator musi pamiętać, że podłączone obciążenie nie może przekraczać maksymalnej mocy zasilacza ponadto maksymalny prąd zasilacz powinien wynosić przynajmnej 750mA, więcej niż potrzebuje tego obicążenie, gdyż należy doliczyć zapotrzebowanie Raspberry Pi z wyświetlaczem. Podane \textbf{750}mA jest wartością bezpieczną i nie znaczy to, że moduł pobiera w trakcie swojego działania taki prąd. \\*
     Zasilacz należy podłączyć do złącza \emph{J5}, wyjścia przkaźnikowe są oznaczone symbolami \emph{J3}, \emph{J4}, a sterownik paska ledowego \emph{J1J2}. Sposób podłączenie paska led jest oznaczony bezpośrednio na płytce. 
         \begin{figure}[H]
         \begin{center}
@@ -120,12 +122,85 @@
     \newpage
     
     \section{Opis interfejsu graficznego}
+    Interfejs graficzny zbudownany jest jako seria widoków, aby aktywować kolejny widok należy horyzontalnie przesunąć rysikiem po wyświetlaczu dotykowym, zgodnie z rządanym kierunkiem zmiany widoku. Takie rozwiązanie jest intuicyjne, gdyż dokładnie w takim sposób obsługuje się interfejsy graficzne w telefonach komórkowych (smartphonach), więc jest to zachowanie do którego przeciętny użytkownik jest przyzwyczajony.
+    Widokiem startowym jest widok kontroli ręcznej wyjść modułu.
+        \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.5\textwidth]{ui_live.jpg}
+            \caption{Zdjęcie ekranu z interfejsem graficznym}
+        \end{center}
+        \end{figure}
+    
+    Położenie aktywnego widoku jest prezentowane w dolnej części interfejsu. Ciemniejsza kropka oznacza aktywny region, pozostałe pokazują dostępne regiony.
+        \begin{figure}[H]
+        \begin{center}
+            \includegraphics[width=0.25\textwidth]{ui_pageind.jpg}
+            \caption{Wskaźnik widoków}
+        \end{center}
+        \end{figure}
     \newpage
     
-    \section{Konfiguracja funkcji}
+    \section{Opis funkcji}
         \subsection{Tworzenie scen}
-        \subsection{Tworzenie animacji}
-        \subsection{Tworzenie zdarzeń czasowych}
+        Tworzenie scen odbywa się przez zapisanie do wybranego slotu aktualnych ustawień sterownika. Sterownik udostępnia 9 slotów na sceny.
+        Każda ze scen przechowuje dane o ustawieniach wyjść paska ledowego oraz stanie wyjść przekaźnikowych. 
+
+            \begin{figure}[H]
+            \begin{center}
+                \includegraphics[width=0.45\textwidth]{ui_manualTab.jpg}
+                \caption{Widok ustawień manualnych}
+            \end{center}
+            \end{figure}
+            Tworzenie scen należy rozpocząć od ręcznego ustawienia rządanych stanów wyjść, poprzez przesuwanie rysikiem po ekranie i obserwację podłączonego paska ledowego. Aby zapisać obecne ustawienia w pamięci sterownika należy wybrać z pola Rys \ref{fig:box} miejsce w pamięci pod którym ma dostępna być scena. Jeśli w danej scenie występują zapisane dane to zostaną one nadpisane tą czynnością.
+            
+            \begin{figure}[!h]
+        	\centering
+        	\begin{minipage}[t]{3cm}
+        		\centering
+        		\includegraphics[scale=0.4]{ui_box.jpg}
+        		\caption{Pole wyboru scen} \label{fig:box} 
+        	\end{minipage}
+        	\hspace{3cm}
+        	\begin{minipage}[t]{5cm}
+        		\centering
+        		\includegraphics[scale=0.4]{ui_sceneTAB.jpg}
+        		\caption{Widok scen} \label{fig:scene} 
+        	\end{minipage}
+        \end{figure}
+            
+        Drugi widok (licząc od lewej strony) pozwala użytkownikowi wybrać z zapisanych scen. Jak można zaobserować na Rys \ref{fig:scene}, aktywne są wyłącznie przyciski, w których sceny zawierają dane.
+        \newpage 
+        
+        \subsection{Tworzenie zdarzeń aktywownych czasowych}
+        Funkcja ta pozwala na stworzenie dwóch alarmów, które o zadanym czasie będą aktywowały wybraną funkcję. 
+            \begin{figure}[H]
+            \begin{center}
+                \includegraphics[width=0.5\textwidth]{ui_time.jpg}
+                \caption{Widok alarmów czasowych}
+            \end{center}
+            \end{figure}
+            
+        W lewej części widoku należy wybrać godzinę aktywacji, w śrdokowej częsci wybiera się funkcję, która ma zostać wywołana. Przełącznik po prawej stronie aktywuje alarm i w po jego aktywacji, tak jak widać na dolnym alarmie, kontrolki stają się nieedytowalne. Alarmy mają priorytet w wyłoaniu nad innymi funkcjami, więc należy pamiętać o ich ustawieniu.
+        
+        \subsection{Aktywacja animacji}
+        Funkcja ta pozwoli włączyć animacje paska led, można wybrać z 10 gotowych, wcześniej zaprogramowanych. Obecna wersja oprogramowania nie pozwal użytkownikowi tworzyć własnych sekwencji kolorów. Użytkownik przy każdej sekwencji może wybrać szybkość jej wykonywanie w tym celu służy suwak znajdujący się na środku widoku.
+            \begin{figure}[H]
+            \begin{center}
+                \includegraphics[width=0.5\textwidth]{ui_animation.jpg}
+                \caption{Widok ustawień animacji}
+            \end{center}
+            \end{figure}
+        
+        \subsection{Sterowanie stanami}
+        Na ostatniej pozycji w przesuwalnym menu, znadjuje się widok służący włączaniu i wyłączaniu wyjść. Ma on najwyższy priorytet, więc w momencie aktywacji alarmu lub sterowania ręcznego, gdy wyjście będzie wyłączone w tym widoku, inne operacje będą ignorowane. W przypadku przłącznika stanu dla paska ledowego, gdy wszystkie jego ustawienia będą równe zero, a użytkownik użyje przełącznika, to będzie on nadal wyłączony. Przełącznik ten służy do wyłączania wybranej sceny lub animacji. Nie powoduje on jednak zatrzymania animacji.
+            \begin{figure}[H]
+            \begin{center}
+                \includegraphics[width=0.5\textwidth]{ui_global.jpg}
+                \caption{Widok przełączników wyjść} \label{fig:switches}
+            \end{center}
+            \end{figure}
+    
+    
     \newpage
 
 \chapter{Dokumentacja serwisowa}
@@ -177,7 +252,8 @@
                     \caption{Schemat trzykanałowego sterownika paska LED}
                 \end{center}
                 \end{figure}
-                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej, napięcia, tranzysor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, żę między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w formie ciepła, a co za tym idzie maksymalny prąd jaki tranzysor może przewodzić bez przegrzewania~się.
+                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej, napięcia, tranzysor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, żę między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w formie ciepła, a co za tym idzie maksymalny prąd jaki tranzysor może przewodzić bez przegrzewania~się. \\*
+                \textcolor{red}{wyprowadzenie maksymalnej mocy, wykres temperatury od obciążenia i wypełnienia, }
         
                 \newpage
         
@@ -203,8 +279,8 @@
         \begin{itemize}
             \item Napięcie wejściowe : 12V
             \item Napięcie wyjściowe : 5V
-            \item Częstotliwość      : Hz 
-            \item Wahania napięcia wyjściowego : Vpp 
+            \item Częstotliwość      :  \textcolor{red}{00}Hz 
+            \item Wahania napięcia wyjściowego :  \textcolor{red}{00}Vpp 
         \end{itemize}
                 
         \subsection{Elektronika dodatkowa}
@@ -240,7 +316,7 @@
         
         \subsection{Płytka drukowana}
             Po zakończonym etapie prototypowania poszczególnych partii, elementy te zostały połączone w jeden schemat, na podstawie którego zaprojektowano płytkę drukowaną (PCB). 
-            Płytka ma wymiary 90x62mm, jest dwustronna, dzięki temu udało się zmniejszyć docelowy jej rozmiar.
+            Płytka ma wymiary 90x62mm, jest dwustronna, dzięki temu udało się zmniejszyć jej docelowy rozmiar.
             
     \section{Instrukcja montażu}
     Montaż układu powinno rozpocząć się od wizualnego sprawdzenia poprawności wykonania płytki drukowanej, ważnym jest sprawdzenie czy wszystkie punkty lutownicze są poprawnie pokryte i czy ścieżki nie wyglądają na uszkodzone, np. w transporcie.
@@ -258,7 +334,7 @@
     \section{Sprawdzanie modułu}
             Płytka i opis znajdujący się na niej został zaprojektowany tak, aby w łatwy sposób można było sprawdzić poprawność działania modułu. 
             
-            \subsubsection{Sprawdzanie poprawności działania samego modułu wykonawczego}
+            \subsection{Sprawdzanie poprawności działania samego modułu wykonawczego}
             Dolna strona PCB zawiera dwa rodzaje oznaczeń, które służą do sprawdzenie poprawności działania elektroniki płytki:
             \begin{itemize}
                 \item oznaczaczenia \emph{G*} informujące do którego pinu mikroprosesora podłączone jest dany element modułu, ma to uławtić programowanie i sprawdzanie poprawności konfiguracji pryferiów,
@@ -271,14 +347,14 @@
                 \end{center}
                 \end{figure}
             Na płytce znajduje się, również oznaczenie mówiące o poprawnych wartościach między punktami kontrolnymi \emph{P1} - \emph{P4} oraz napięcia, które należy podać między masą a punktami \emph{P5} - \emph{P6}.
-            Sprawdzenie poprawności montażu elemtów prztwronicy napięcia, odbywa się przez pomiar napięcia między punktami P1 P2, napięcie to powinnow wynosić 5V z xxx procentową dokładnością.
-            Należy również sprawdzić wartość napięcia między punktami P3 P4, które powinno wynosić XXXXXX.
+            Sprawdzenie poprawności montażu elemtów prztwronicy napięcia, odbywa się przez pomiar napięcia między punktami P1 P2, napięcie to powinnow wynosić 5V z  \textcolor{red}{00} procentową dokładnością.
+            Należy również sprawdzić wartość napięcia między punktami P3 P4, które powinno wynosić  \textcolor{red}{0000}.
             W celu sprawdzenia sterownika paska LED należy podać 12V kolejno między masą, punktami P5.1, P5.2, P5.3 i mierzyć napięcie na odpowiadających wyjściach sterownika. Moduł działa poprawnie jeśli napięcie na wyjściu każdego z kanałów będzie równe 12V.
             Sprawdzeie wyjść przekaźnikowych odbywa się przez podnie 3.3V, z punktu P4, na punkty P6.1 i P6.2.
             Przekaźnik w momencie przełączania wydaje wyraźny dźwięk (kliknięcie), więc jego brak w chwili podłączenia napięcia oznacza niepoprawne działanie. Kolejnym etapem weryfikacji jest zmierzenie napięcia na wyjściach przekaźnikowych przy zwartych P6.1 lub P6.2 z P4, powinno ono być równe 12V.
             \\* Opisane metody testowania nie wymagają podłączenie Raspberry Pi, ale wymagają podłączenie zasilania 12V. 
             
-            \subsubsection{Sprawdzenie poprawności działania całości modułu}
+            \subsection{Sprawdzenie poprawności działania całości modułu}
                 \begin{figure}[H]
                 \begin{center}
                     \includegraphics[width=0.5\textwidth]{dip_zoom.jpg}
@@ -304,19 +380,79 @@
             \newpage
             
             \section{Dokumentacja oprogramowania}
-            
-            
             Kompletny zestaw wytworzonego oprogramowania modułu składa się z pięciu plików binarnych - jednego dla programu użytkownika, trzech dla każdego z trybów serwisowych, jednego służącego do konfiguracji peryferiów oraz ze skryptu Bash'owego wykorzystywanego przy starcie modułu.
             
                 \subsection{Interfejs graficzny}
-                \newpage
-                \subsection{Backend}
+                Interfejs graficzny jest w całości napisany w języku QML korzystając z biblioteki QtQuick w wersji 2.6, za paletę kolorów interfejsu odpowiada biblioteka Material 2.0, kształ i zachowania elementów widoku zaczerpnięto z biblioteki Controls 2.0. 
+                
+                \subsubsection{Przykład połączenia klasy C++ z QML}
+                Przykład demonstruje mechanizm łączenia klas C++ z kodem interfejsu graficznego w QML, z uwagi na zbyt dużą złożoność kodu w projekcie, posłużono się uproszczono wersję. Kod przykładu pokazuje obsługę przłącznika (Switch) takiego jak wykorzystany na Rys \ref{fig:switches}.
                     \begin{figure}[H]
                     \begin{center}
-                        \includegraphics[width=0.5\textwidth]{inz_diag.png}
-                        \caption{Schemat przepływu informacji w oprogramowaniu w trybie normalnego użytku}
+                        \includegraphics[width=0.65\textwidth]{code_class.jpg}
                     \end{center}
                     \end{figure}
+                    Klasa UiManualData ma reagować na zmianę statnu przełącznika w sposób asynchroniczny, aby to osiągnąć należy skorzystać z modelu sygnałów i slotów z QT. Tworząc własny typ uzyskuje się to przez dziedzicznie po typie QObject oraz definicję makra Q\_OBJECT w sekcji prywantej klasy. W lini 9 znajduje się definicja slotu, który będzie wywoływany z objektu QML.
+                    
+                    \begin{figure}[H]
+                    \begin{center}
+                        \includegraphics[width=0.65\textwidth]{code_main.jpg}
+                    \end{center}
+                    \end{figure}
+                    W celu udostępnienia klasy UiManualData w QML, należy ją zarejstrować, czynność ta odbywa się w linijce 8.
+                    
+                    \begin{figure}[H]
+                    \begin{center}
+                        \includegraphics[width=0.65\textwidth]{code_qml.jpg}
+                    \end{center}
+                    \end{figure}
+                    W pliku .qml należy zaimportować klasę, linia 1, trzeba pamiętać o numerze wersji z jakim zarejstrowało się dany typ. Następnie trzeba stworzyć obiekt tej klasy, linijki 4-6.
+                    Po wykonaniu tych czynności można korzystać z interfejsu klasy. W sygnale \emph{onToggle} (sygnał wywoływany przy zmianie statnu przełącznika) obiektu Switch, występuje wywołanie metody klasy UiManualData.
+                
+                \newpage
+                
+                
+                \subsection{Backend}
+                Zaplecze oprogramowania zaprojektowano w formie warstw funkcjonalności. Podział ten wiadać na Rys \ref{fig:layers}. Dokumentowanie oprogramowania w taki sposób definiuje jedynie logiczny podział kodu oraz przepływ informacji i nie deaktualzuje się przy dodawaiu nowych funkcjonalności.  
+                    \begin{figure}[H]
+                    \begin{center}
+                        \includegraphics[width=0.7\textwidth]{inz_diag.png}
+                        \caption{Schemat warstwowy oprogramowania trybu normalnego~użytku} \label{fig:layers}
+                    \end{center}
+                    \end{figure}
+                \subsubsection{Warstwa sygnałów UI}
+                Warstwa sygnałów UI jest bezpośrednim połączeniem z interfejsem graficznym QML, wykorzystywane są tutaj takie mechanizmy jak ten przedstawiony w sekcji 5.5.1. Warstwa ta jest całkowicie przezroczysta - nie przechowywane są tutaj rzadne dane oraz nie ma w niej zaimplementowanej logiki systemu. Sprawdzane jest jedynie czy dane przychodzące z UI są poprawne.
+                
+                \subsubsection{Warstwa danych}
+                Warstwa danych przechowuje dane wprowadzone przez użytkownika takie jak: konfiguracja scen i alarmów, obecny stan modułu, dane animacji.  
+                
+                \subsubsection{Warstwa logiki}
+                Warstwa logiki jest prostą maszyną stanów, która podejmuje decyzje na podstawie sygnału z interfejsu użytkownika jak i z informacji o obecnym stanie urządzenia. Na przykład jeśli użytkownik ręcznie uruchomi animację i w trakcie jej wykonywania zostanie aktywowany alarm, zostanie zlecone przerwanie wykonywania animacji i wywołana będzie zadana funkcja alarmu.
+                
+                \subsubsection{Warstwa obsługi zadań}
+                Warstwa obsługi zadań odpowiada za planowanie i wykonywanie czynności zadanych przez warstwę logiki, dane do poszczególnych zadań pobierane są bezpośrednio z warstwy danych.
+                
+                \subsubsection{Warstwa obsługi sprzętu}
+                Warstwa obsługi sprzętu jest jednie abstrakcją do sprzętu urządzenia, wykonuje zlecone polecenia, nie podejmuje, żadnych decyzji, może jedynie zgłosić błąd wykonywania czynności.
+                
+                    \newpage
+                \subsection{Obsługa sprzętu}
+                Do obsługi sprzętu zdecydowano się użyć bibliotekę WiringPi, która jest udostępniana na zasadach \emph{GNU LGPL v.3 }. Biblioteka jest napisana proceduralnie w języku C i stanowi jednynie warstwę abstrakcji do sprzętu mikorprocesora. Biblioteka wspiera używanie mikroprocesorów \emph{BCM2835}, \emph{BCM2836} oraz  \emph{BCM2837}. \\*
+                WiringPi implementuje m.in. : 
+                \begin{itemize}
+                    \item obsługę wejść i wyjść,
+                    \item obsługę przerwań,
+                    \item PWM,
+                    \item SPI,
+                    \item IIC,
+                    \item wielowątkowość.
+                \end{itemize}
+                W projekcie wykorzystano jedynie obsługę PWM.
+                
+                \subsection{Oprogramowanie dodatkowe}
+                \subsubsection{Logger}
+                \subsubsection{Pomiar obciążenia systemu}
+                
                 \newpage
                 
                 \subsection{Opis scenariuszy programowych}
@@ -327,7 +463,8 @@
                             \caption{Schemat blokowy startu modułu} \label{fig:starup}
                         \end{center}
                         \end{figure}
-                    \newpage
+                Przedstawiony schemat blokowy jest zaimplementowany w postaci skryptu bash'owego uruchamianego bezpośrednio po starcie systemu operacyjnego. Decyduje on o trybie uruchomienia urządzenia, włącza odpowieni plik binarny i konfiguruje peryferia sprzętowe procesora.
+                \newpage
                         
                     \subsubsection{Tryb serwisowy 1}
                         \begin{figure}[H]
@@ -336,16 +473,17 @@
                             \caption{Schemat blokowy trybu serwisowego 1} \label{fig:serT1}
                         \end{center}
                         \end{figure}
-                    
+                        Osobny program służacy do testowania połączenia Raspberry Pi z modułem wykonawczym, nie wykorzystuje kodu źródłowego aplikacji użytkownika, jest napisany w taki sposób aby zminimalizować możliwość wystąpienia błędu w czasie działania.
                         \newpage
                     
                     \subsubsection{Tryb serwisowy 2}
                         \begin{figure}[H]
                         \begin{center}
-                            \includegraphics[width=0.6\textwidth]{t2.png}
+                            \includegraphics[width=0.7\textwidth]{t2.png}
                             \caption{Schemat blokowy trybu serwisowego 2} \label{fig:serT2}
                         \end{center}
                         \end{figure}
+                        Program służy do całościowego testowania modułu (dokładniejszy opis testu w sekcji 5.4.2). Jest on osobnym programem, który korzysta z logiki i implementacji wykorzystanych w aplikacji użytkownika.
                         
                         \newpage
                         
@@ -356,10 +494,9 @@
                             \caption{Schemat blokowy trybu serwisowego 3} \label{fig:serT3}
                         \end{center}
                         \end{figure}
+                        Program ten swoje działanie rozpoczyna od odczytanie pliku startowego z poprzedniego uruchomienia aplikacji klienckiej, wyświetla on następnie takie dane jak czas poprzedniego działania, wystąpione błędy, oprócz tego program wyświela na ekranie dotykowym, dane o chwilowym obciążeniu systemu.
                     
                         \newpage
-                        
-                \subsection{Wykorzystane biblioteki}
 
 \chapter{Wnioski i uwagi}
 \thispagestyle{fancy}
