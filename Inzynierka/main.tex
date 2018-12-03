@@ -51,7 +51,7 @@
 \chapter{Wstęp}
 \thispagestyle{fancy}
     \section{Wprowadzenie}
-    W dzisiejszych czasach oświetlenie w naszych domach oprócz funkcji czysto praktycznej, ma również służyć jako dekoracja i stanowić integralną część wystroju. Oświetlenie LED stanowi znaczącą część rynku elektroniki konsumenckiej i w ciągu kilkunastu lat wyparła prawie całkowicie z użytku codziennego wolframowe żarówki i~lampy wyładowcze (potocznie zwane świetlówkami). Popularność technologii LED jest spowodowana głównie atrakcyjnymi cenami produktów i~znacząco większą sprawnością elektryczną oraz co za tym idzie niższym zużyciem energii elektrycznej.
+    W dzisiejszych czasach oświetlenie w naszych domach oprócz funkcji czysto praktycznej, ma również służyć jako dekoracja i tworzyć integralną część wystroju. Oświetlenie LED stanowi znaczącą część rynku elektroniki konsumenckiej i w ciągu kilkunastu lat wyparła prawie całkowicie z użytku codziennego wolframowe żarówki i~lampy wyładowcze (potocznie zwane świetlówkami). Popularność technologii LED jest spowodowana głównie atrakcyjnymi cenami produktów i~znacząco większą sprawnością elektryczną oraz co za tym idzie niższym zużyciem energii elektrycznej.
     
     \section{Cel i zakres pracy}
     Celem pracy jest stworzenie nowoczesnego sterownika oświetlenia LED opartego na platformie mikrokontrolerowej. W szczególności cel pracy obejmuje: 
@@ -75,7 +75,8 @@
 %
 \chapter{Założenia projektowe}
 \thispagestyle{fancy}  
-    Tworzony moduł będzie oferował użytkownikowi możliwość sterowania kolorami i~jasnością trójkolorowego paska ledowego oraz sterowanie dwoma wyjściami przekaźnikowymi. Użytkownik będzie komunikował się z modułem przez czterocalowy dotykowy wyświetlacz. Interfejs będzie udostępniał możliwość ręcznej zmiany stanów podłączonego oświetlenia, zapisywania ustawień oraz czasowego wywoływania zapisanych scen oświetleniowych.\\*
+
+    Tworzony moduł będzie oferował użytkownikowi możliwość sterowania kolorami i~jasnością trójkolorowego paska ledowego oraz sterowanie dwoma wyjściami przekaźnikowymi. Użytkownik będzie komunikował się z modułem przez czterocalowy dotykowy wyświetlacz. Interfejs będzie udostępniał możliwość ręcznej zmiany stanów podłączonego oświetlenia, zapisywania ustawień i czasowego wywoływania zapisanych scen oświetleniowych.\\*
     Gotowy moduł sterownika oświetlenia LED musi spełniać kryteria jakościowe, w~szczególności:
     \begin{itemize}
         \item częstotliwość odświeżania generowanego sygnału PWM sterującego pasek ledowy musi być na tyle wysoka, aby nie można było zaobserwować migotania,
@@ -84,36 +85,36 @@
         obsługa modułu była komfortowa,
         
         \item moduł musi działać w ciągłości, tzn. konfiguracja wbudowanego systemu operacyjnego musi zabezpieczać sytuacje
-        krytycznych błędów czasu działania, między innymi takich jak: desynchronizacja systemowego zegara, wyłączenie aplikacji interfejsu graficznego
+        krytycznych błędów czasu działania, między innymi takich jak: desynchronizacja systemowego zegara, wyłączenie aplikacji interfejsu graficznego.
     \end{itemize}
 %
 \chapter{Opis wykorzystanych technologii}
 \thispagestyle{fancy}
     \section{Raspberry Pi}
-    Raspberry Pi jest serią jednopłytkowych komputerów opartych na rdzeniach ARM. Pod nazwą Raspberry Pi kryje się również olbżymia społeczność rozwijająca oprogramowanie, tworząca biblioteki i materiały edukacyjne.
+    Raspberry Pi jest serią jednopłytkowych komputerów opartych na rdzeniach ARM. Pod nazwą Raspberry Pi kryje się również olbrzymia społeczność rozwijająca oprogramowanie, tworząca biblioteki i materiały edukacyjne.
     W projekcie wykorzystano model \emph{Raspberry Pi Zero W V1.3} oparty na procesorze  \emph{Broadcom BCM2835 ARM11}\cite{RpiData}. Moduł wyposażony jest m.in. w 512MB pamięci RAM, moduł WiFi, moduł Bluetooth, port miniHDMI. Z uwagi na  duże możliwości techniczne oraz niską cenę, modułu ten jest powszechnie wykorzystywany przy prototypowaniu urządzeń elektronicznych IoT. 
-    Na urządzeniu instalowany i uruchamiany jest system operacyjny. Producent dostarcza dedykowaną wersję Liunx'a Debian nazwaną Raspbian. Zawiera ona potrzebne biblioteki i sterowniki do obsługi peryferiów mikroprocesora. Stosowanie systemu operacyjne Linux w zastosowaniach systemów wbudowanych pozwala tworzyć bardziej skomplikowane oprogramowanie, ułatwia tworzenie graficznych interfejsów użytkownika i pozwala na zdalne łączenie się z urządzeniem, pod warunkiem, że urządzenie wspiera to sprzętowo. Główną wadą korzystania z~systemu operacyjnego jest obsługa sprzętu mikroprocesora w czasie rzeczywistym, z~uwagi na procesy zachodzące w systemie np.: przłączanie kontekstu wątków. 
+    Na urządzeniu instalowany i uruchamiany jest system operacyjny. Producent dostarcza dedykowaną wersję Liunx'a Debian nazwaną Raspbian. Zawiera ona potrzebne biblioteki, jak i sterowniki do obsługi peryferiów mikroprocesora. Stosowanie systemu operacyjne Linux w zastosowaniach systemów wbudowanych pozwala tworzyć bardziej skomplikowane oprogramowanie, ułatwia tworzenie graficznych interfejsów użytkownika i pozwala na zdalne łączenie się z urządzeniem, pod warunkiem, że urządzenie wspiera to sprzętowo. Główną wadą korzystania z~systemu operacyjnego jest obsługa sprzętu mikroprocesora w czasie rzeczywistym, z~uwagi na procesy zachodzące w systemie np: przłączanie kontekstu wątków. 
     \section{Język C++}
-    Język C++ powstawł w roku 1979 stworzony przez Bjarne Stroustrup'a jako rozszerzenie języka C, od tego czasu C++ doczekał się kilku standardów i od 2011 roku co 3 lata wydawana jest jego nowa wersja. C++ osiągną olbrzymią popularność dzięki swojej uniwersalności. W komercyjnych zastosowaniach przy tworzeniu oprogramowania na wbudowane systemy  często wypiera używanie czystego języka~C. C++ pozwala na tworzenie kodu zarówno nisko jak i wysokopoziomowego. Kod może być zarówno zorientowany obiektowo jak również czysto proceduralnie. W porównaniu do C, C++ pozwala w łatwiejszy sposób tworzyć reużywalny kod \cite{EffectiveModern}, dzięki mechanizmowi noszącemu nazwę polimorfizm. Bibliotek standardowa dostarcza bardzo dużo gotowych algorytmów, kontenerów itd. pozwalając skupić się na szybszym tworzeniu kodu spełniającego wymagania funkcjonalne.
+    Język C++ powstawł w roku 1979 stworzony przez Bjarne Stroustrup'a jako rozszerzenie języka C, od tego czasu C++ doczekał się kilku standardów i od 2011 roku co 3 lata wydawana jest jego nowa wersja. C++ osiągną olbrzymią popularność dzięki swojej uniwersalności. W komercyjnych zastosowaniach przy tworzeniu oprogramowania na wbudowane systemy  często wypiera używanie czystego języka~C. C++ pozwala na tworzenie kodu zarówno nisko jak i wysokopoziomowego. Kod może być zarówno zorientowany obiektowo jak również czysto proceduralnie. W porównaniu do C, C++ pozwala w łatwiejszy sposób tworzyć reużywalny kod \cite{EffectiveModern}, dzięki mechanizmowi noszącemu nazwę polimorfizm. Biblioteka standardowa dostarcza bardzo dużo gotowych algorytmów, kontenerów itd. pozwalając skupić się na szybszym tworzeniu kodu spełniającego wymagania funkcjonalne.
 
     \newpage
     \section{Biblioteka QT i QML}
-    QT jest zestawem bibliotek, których głównym celem jest tworzenie interfejsów graficznych aplikacji komputerowych. Ponadto QT dostarcza wiele narzędzi programistycznych pomagających rozwijać oprogramowanie. Oprócz zastosowań komputerowych QT daje możliwości tworzenia aplikacji na urządzenia wbudowane oraz mobilne i jest powszechnie używane przez takie firmy jak: LG, Mercedes-Benz. Biblioteka QT oparta jest o asynchroniczny mechanizm sygnałów i slotów, jest podstawa całego sposobu działania biblioteki. Po za możliwościami tworzenia interfejsów graficznych biblioteka dostarcza własne moduły, które pozwalają na: obsługę procesów, wykonyanie operacji na plikach, komunikację sieciową. Ponad to QT zawiera odpowiedniki kontenerów znajdujących się w STL\cite{EffectiveModern} (ang. Standard Template Library) z C++. Całe biblioteka jest napisana w sposób niezależny od architektury urządzeń docelowych, pozwalając na łatwe przenoszenie projektów. W pakiecie QT znajduje się zintegrowane środowisko programistyczne QT Creator (rysunek \ref{fig:qtc}). 
+    QT jest zestawem bibliotek, których głównym celem jest tworzenie interfejsów graficznych aplikacji komputerowych. Ponadto QT dostarcza wiele narzędzi programistycznych pomagających rozwijać oprogramowanie. Oprócz zastosowań komputerowych QT daje możliwości tworzenia aplikacji na urządzenia wbudowane oraz mobilne i jest powszechnie używane przez takie firmy jak: LG, Mercedes-Benz. Biblioteka QT oparta jest o asynchroniczny mechanizm sygnałów i slotów, jest podstawą całego  jej działania. Po za możliwościami tworzenia interfejsów graficznych biblioteka dostarcza własne moduły, które pozwalają na: obsługę procesów, wykonywanie operacji na plikach, komunikację sieciową. Ponad to QT zawiera odpowiedniki kontenerów znajdujących się w STL\cite{EffectiveModern} (ang. Standard Template Library) z C++. Cała biblioteka napisana jest w sposób niezależny od architektury urządzeń docelowych, pozwalając na łatwe przenoszenie projektów. W pakiecie QT znajduje się zintegrowane środowisko programistyczne QT Creator (rysunek \ref{fig:qtc}). 
         \begin{figure}[H]
         \begin{center}
-            \includegraphics[width=0.65\textwidth]{qtc.png}
+            \includegraphics[width=0.8\textwidth]{qtc.png}
             \caption{Przykładowy widok w QT Creator }
             \label{fig:qtc}
         \end{center}
         \end{figure}
-    \noindent Narzędzie to pozwala w łatwiejszy sposób tworzyć oprogramowanie korzystające z~biblioteki QT podpowiadając składnię poleceń i wyświetlając dokumentację. QT Creator pozwala także na uruchamianie debbugera\cite{debugger}, wizualne tworzenie interfejsu użytkownika oraz kompilację skrośną\cite{RpiBeginner} (ang. cross-compile). Kompilacja skrośna polega na kompilowaniu i~tworzeniu pliku binarnego na stacji roboczej programisty i wgrywaniu samego pliku wykonywalnego na docelowe urządzenie wbudowane poprzez sieć Wi-Fi. Dzięki zastosowaniu takiego narzędzie czas wytwarzania oprogramowania znacznie się zmniejsza. 
+    \noindent Narzędzie to pozwala w łatwiejszy sposób tworzyć oprogramowanie korzystające z~biblioteki QT podpowiadając składnię poleceń i wyświetlając dokumentację. QT Creator umożliwia także na uruchamianie debbugera\cite{debugger}, wizualne tworzenie interfejsu użytkownika oraz kompilację skrośną\cite{RpiBeginner} (ang. cross-compile). Kompilacja skrośna polega na kompilowaniu i~tworzeniu pliku binarnego na stacji roboczej programisty i wgrywaniu samego pliku wykonywalnego na docelowe urządzenie wbudowane poprzez sieć Wi-Fi. Dzięki zastosowaniu takiego narzędzie czas wytwarzania oprogramowania znacznie się zmniejsza. 
      
 %
 \chapter{Dokumentacja użytkownika}
 \thispagestyle{fancy}
     \section{Typowe wykorzystanie}
     \indent
-    Przeznaczeniem modułu jest wykorzystanie w pomieszczeniu użytkowym, do sterowania intensywnością świecenia poszczególnych kolorów paska ledowego oraz do przełączania dwóch dwunastowoltowych wyjść przekaźnikowych. Wyjścia przekaźnikowe zostały umieszczone w projekcie aby pozwolić użytkownikowi podłączyć i~sterować np.: stanem jednokolorowego paska LED, stanem żarówki LED lub zewnętrznym przekaźnikiem bądź stycznikiem.
+    Przeznaczeniem modułu jest wykorzystanie w pomieszczeniu użytkowym, do sterowania intensywnością świecenia poszczególnych kolorów paska ledowego oraz do przełączania dwóch dwunastowoltowych wyjść przekaźnikowych. Wyjścia przekaźnikowe zostały umieszczone w projekcie tak aby pozwolić użytkownikowi podłączyć i~sterować np: stanem jednokolorowego paska LED, stanem żarówki LED lub zewnętrznym przekaźnikiem bądź stycznikiem.
     
     \section{Podłączanie zasilania i urządzeń wykonawczych}
     Moduł zasilany jest napięciem 12V i nie posiada zabezpieczenia przeciw odwrotnej polaryzacji zasilania. więc błędne podłączenie zasilacza może uszkodzić sterownik. 
@@ -138,7 +139,7 @@
         \end{table}
     \noindent
     Wartości zawarte w tabeli \ref{tab:param} gwarantują poprawne działanie modułu. 
-    Należy pamiętać, że podłączone obciążenie nie może przekraczać maksymalnej mocy zasilacza ponadto maksymalny prąd zasilacz powinien wynosić przynajmniej \textbf{450mA}, więcej niż potrzebuje tego obciążenie, gdyż należy doliczyć zapotrzebowanie Raspberry Pi z wyświetlaczem. Podane \textbf{450mA} jest wartością bezpieczną i nie znaczy to, że moduł pobiera w trakcie swojego działania taki prąd.\newpage \noindent Zasilacz należy podłączyć do złącza \emph{J5}, wyjścia przekaźnikowe są oznaczone symbolami \emph{J3}, \emph{J4}, a sterownik paska ledowego \emph{J1J2}. Sposób podłączenie paska led jest oznaczony bezpośrednio na płytce, przykład rysunek \ref{fig:strip}. 
+    Należy pamiętać, że podłączone obciążenie nie może przekraczać maksymalnej mocy zasilacza.Ponadto maksymalny prąd zasilacz powinien wynosić przynajmniej \textbf{450mA}, więcej niż potrzebuje tego obciążenie, gdyż należy doliczyć zapotrzebowanie Raspberry Pi z wyświetlaczem. Podane \textbf{450mA} jest wartością bezpieczną i nie znaczy to, że moduł pobiera w trakcie swojego działania taki prąd.\newpage \noindent Zasilacz należy podłączyć do złącza \emph{J5}, wyjścia przekaźnikowe są oznaczone symbolami \emph{J3}, \emph{J4}, a sterownik paska ledowego \emph{J1J2}. Sposób podłączenie paska led jest oznaczony bezpośrednio na płytce, przykładem jest rysunek \ref{fig:strip}. 
         \begin{figure}[H]
         \begin{center}
             \includegraphics[width=0.65\textwidth]{podlaczone.jpg}
@@ -176,7 +177,7 @@
     \newpage
     
     \section{Opis funkcji}
-        Sterownik udostępnia 4 funkcje sterowania wyjściami. Pozwalają one na ręczne sterowanie wyjściami wraz z możliwością zapisania konfiguracji w pamięci sterownika, przełączania między zapisanymi scenami, czasowe wywoływanie scen i animacji zapisanych w sterowniku oraz włączanie animacji paska led wraz z możliwością sterownia prędkością zmiany kolorów.
+        Sterownik udostępnia 4 funkcje sterowania wyjściami. Pozwalają one na:+ ręczne sterowanie wyjściami wraz z możliwością zapisania konfiguracji w pamięci sterownika, przełączania między zapisanymi scenami, czasowe wywoływanie scen i animacji zapisanych w sterowniku oraz włączanie animacji paska led wraz z możliwością sterownia prędkością zmiany kolorów.
         \subsection{Tworzenie scen}
         Tworzenie scen odbywa się przez zapisanie aktualnych ustawień sterownika. Sterownik udostępnia możliwość zapisania  9 scen. Każda ze scen przechowuje dane o~ustawieniach wyjść paska ledowego oraz stanie wyjść przekaźnikowych. 
 
@@ -229,7 +230,7 @@
             \end{figure}
         
         \subsection{Sterowanie stanami}
-        Na ostatniej pozycji w przesuwalnym menu (Rysunek \ref{fig:view6}), znajduje się widok służący włączaniu i wyłączaniu wyjść. Ma on najwyższy priorytet, więc w momencie aktywacji alarmu lub sterowania ręcznego, gdy wyjście będzie wyłączone w tym widoku, inne operacje będą ignorowane. W przypadku przełącznika stanu dla paska ledowego, gdy wszystkie jego ustawienia będą równe zero, a użytkownik użyje przełącznika, to będzie on nadal wyłączony. Przełącznik ten służy do wyłączania wybranej sceny lub animacji. Nie powoduje on jednak zatrzymania animacji.
+        Na ostatniej pozycji w przesuwalnym menu (Rysunek \ref{fig:view6}), znajduje się widok służący włączaniu i wyłączaniu wyjść. Ma on najwyższy priorytet, więc w momencie aktywacji alarmu lub sterowania ręcznego, gdy wyjście będzie wyłączone w tym widoku inne operacje będą ignorowane. W przypadku przełącznika stanu dla paska ledowego, gdy wszystkie jego ustawienia będą równe zero a użytkownik użyje przełącznika to będzie on nadal wyłączony. Przełącznik ten służy do wyłączania wybranej sceny lub animacji. Nie powoduje on jednak zatrzymania animacji.
             \begin{figure}[H]
             \begin{center}
                 \includegraphics[width=0.5\textwidth]{ui_global.jpg}
@@ -287,14 +288,14 @@
                     \caption{Schemat trzy kanałowego sterownika paska LED}
                 \end{center}
                 \end{figure}
-                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej\cite{irfz44nData}, napięcia, tranzystor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, żę między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w formie ciepła, a co za tym idzie maksymalny prąd jaki tranzystor może przewodzić bez przegrzewania~się.
+                Elementem wykonawczym są tranzystory MOSFET (ang. Metal-Oxide Semiconductor Field-Effect Transistor), oznaczone na schemacie symbolami \emph{Q1}, \emph{Q2}, \emph{Q3}. Po podaniu między złącza bramka(ang. gate) i źródło(ang. source), określonego w nocie katalogowej\cite{irfz44nData} napięcia, tranzystor zaczyna przewodzić między złączami dren(ang. drain)-źródło. Należy pamiętać, że między drenem, a źródłem występuje rezystancja określona w nocie katalogowej symbolem Rds(on). Jest to ważny parametr, ponieważ ma on wpływ na ilość energii, która zostanie wytracona w formie ciepła, a co za tym idzie maksymalny prąd jaki tranzystor może przewodzić bez przegrzewania~się.
                 \begin{figure}[H]
                 \begin{center}
                     \includegraphics[width=0.6\textwidth]{obliczenia1.jpg}
                     \includegraphics[width=0.6\textwidth]{obliczenia2.jpg}
                 \end{center}
                 \end{figure}
-                \indent Z powyższych obliczeń (na podstawie książki Sztuka elektroniki\cite{sztuka} ) wynika, że maksymalny prąd, który może przewodzić pojedynczy tranzystor (bez dodatkowego chłodzenia) to ponad 11A. Maksymalna moc sterownika paska led nie jest, więc uzależniona od wykorzystanych tranzystorów.  
+                \noindent Z powyższych obliczeń (na podstawie książki Sztuka elektroniki\cite{sztuka} ) wynika, że maksymalny prąd, który może przewodzić pojedynczy tranzystor (bez dodatkowego chłodzenia) to ponad 11A. Maksymalna moc sterownika paska led nie jest, więc uzależniona od wykorzystanych tranzystorów.  
                 
             
             \subsubsection{Wyjścia przekaźnikowe}
@@ -307,7 +308,7 @@
                 \end{center}
                 \end{figure}
         \subsection{Przetwornica napięcia}
-        Na płytce znajduje się również przetwornica napięcia, która służy zasileniu Raspberry Pi Zero. Zdecydowano się na wykorzystanie \emph{ON Semiconductor MC34063A} z~uwagi na dużą dostępność, niską cenę oraz łatwość użycia. Moduły MC34063 pracują w~zakresie napięcia wejściowego od 3V do 40V i~ mogą być skonfigurowane w~trybie obniżania, podwyższania lub odwracania napięcia. Maksymalny prąd wyjściowy to 1.5A, jest to wartość przekraczająca potrzeby przy zasilaniu większości mikroprocesorów. Sterowanie parametrami układu DC-DC odbywa się przez dobór wartości elementów pasywnych. Nota katalogowa\cite{mc34063A} układu dostarcza potrzebne wzory potrzebne do obliczenia wartości elementów.
+        Na płytce znajduje się także przetwornica napięcia, która służy zasileniu Raspberry Pi Zero. Zdecydowano się na wykorzystanie \emph{ON Semiconductor MC34063A} z~uwagi na dużą dostępność, niską cenę i łatwość użycia. Moduły MC34063 pracują w~zakresie napięcia wejściowego od 3V do 40V i~ mogą być skonfigurowane w~trybie obniżania, podwyższania lub odwracania napięcia. Maksymalny prąd wyjściowy to 1.5A, wartość ta przekracza potrzeby przy zasilaniu większości mikroprocesorów. Sterowanie parametrami układu DC-DC odbywa się przez dobór wartości elementów pasywnych. Nota katalogowa\cite{mc34063A} układu dostarcza potrzebne wzory potrzebne do obliczenia wartości elementów.
                 \begin{figure}[H]
                 \begin{center}
                     \includegraphics[width=0.75\textwidth]{zasilanie.jpg}
@@ -345,7 +346,7 @@
                 \caption{Schemat przełącznika trybów pracy}
             \end{center}
             \end{figure}
-        W celach zmiany trybów diagnostycznych na płytce znajduje się potrójny przełącznik suwakowy. Z uwagi na 3.3V poziom logiczny Raspberry Pi i fakt, że na płytce znajduje się jedynie przetwornica napięcia o pięciowoltowym wyjściu należało stworzyć dzielnik napięciowy tworzony z rezystorów R17 i R18. Rezystory R19, R20, R21 są rezystorami podciągającymi.  
+        W celu zmiany trybów diagnostycznych na płytce znajduje się potrójny przełącznik suwakowy. Z uwagi na 3.3V poziom logiczny Raspberry Pi i fakt, że na płytce znajduje się jedynie przetwornica napięcia o pięciowoltowym wyjściu należało stworzyć dzielnik napięciowy tworzony z rezystorów R17 i R18. Rezystory R19, R20, R21 są rezystorami podciągającymi.  
         \subsubsection{Diody sygnalizujące stan pracy}
             \begin{figure}[H]
             \begin{center}
@@ -425,19 +426,19 @@
                 \end{center}
                 \end{figure}
             Sterownik udostępnia 3 tryby serwisowe wybierane za pomocą przełącznika suwakowego.
-            Oprogramowanie sterownika odczytuje wartości, wejść do których podłączony jest przełącznik, w momencie startu systemu, więc aby włączyć tryb serwisowy należy odłączyć zasilanie modułu, wybrać tryb i podłączyć zasilanie. Nie jest dozwolone przełączenie dwóch lub więcej przełączników, w takim przypadku system zignoruje te informacje i uruchomi moduł w trybie pracy normalnej. Przejście modułu w tryb serwisowy sygnalizowane jest ciągłym podświetleniem diody \emph{LED3}.
+            Oprogramowanie sterownika odczytuje wartości wejść, do których podłączony jest przełącznik, w momencie startu systemu, więc aby włączyć tryb serwisowy należy odłączyć zasilanie modułu, wybrać tryb i podłączyć zasilanie. Nie jest dozwolone przełączenie dwóch lub więcej przełączników. W takim przypadku system zignoruje te informacje i uruchomi moduł w trybie pracy normalnej. Przejście modułu w tryb serwisowy sygnalizowane jest ciągłym podświetleniem diody \emph{LED3}.
             
             Dostępne tryby:
             \begin{itemize}
                 \item przełącznik w pozycji 1 - w trybie tym sterownik będzie włączał i wyłączał z odstępem 1 sekundy wyjścia modułu w kolejności : kanał czerwony, kanał zielony, kanał niebieski, wyjście przekaźnikowe 1, wyjście przekaźnikowe 2. Tryb ten pozwala sprawdzić poprawność działania elektroniki wyjściowej oraz podłączenia modułu Raspberry Pi.
                 
-                \item przełącznik w pozycji 2 - tryb służy do sprawdzenia poprawności działania wyświetlacza, w~ szczególności poprawności wyświetlania kolorów, czasu odświeżania dokładności powierzchni dotykowej.
+                \item przełącznik w pozycji 2 - tryb jest przeznaczony do sprawdzenia poprawności działania wyświetlacza, w~ szczególności poprawności wyświetlania kolorów, czasu odświeżania, dokładności powierzchni dotykowej.
                 Na ekranie wyświetli się licznik inkrementujący swoją wartość od 0 do 10000 co 200ms, napis "TEST"~w 3 rozmiarach oraz tło aplikacji będzie zmieniało kolory z częstotliwością 500ms w~ kolejności: czerwony, zielony, niebieski, biały. Ponadto na ekranie widoczne będą 4 pola dotykowe, których naciśnięcie będzie aktywowało diodę \emph{LED2},~w~przypadku wykrycia dotyku po za, którymś z tych pól załączona zostanie dioda \emph{LED1}. 
                 
-                \item przełącznik w pozycji 3 - tryb służący do kontroli obciążenia procesora systemu, zajętości RAM-u oraz temperatury na procesorze. Informacje te będą wyświetlane na ekranie. Ponadto zostanie wyświetlony plik kontrolny z~poprzedniego uruchomienia modułu.
+                \item przełącznik w pozycji 3 - tryb służący do kontroli obciążenia procesora systemu, zajętości RAM-u oraz temperatury na procesorze. Informacje te będą wyświetlane na ekranie. Dodatkowo zostanie wyświetlony plik kontrolny z~poprzedniego uruchomienia modułu.
             \end{itemize}
             
-            Wyłączenie trybu serwisowego jest możliwe dopiero po odłączeniu zasilania i~ustawieniu przełącznika serwisowego do konfiguracji pracy standardowej.
+\noindent            Wyłączenie trybu serwisowego jest możliwe dopiero po odłączeniu zasilania i~ustawieniu przełącznika serwisowego do konfiguracji pracy standardowej.
             Moduł ignoruje zmiany przełącznika suwakowego w czasie działania programów.
             
             \newpage
@@ -449,27 +450,27 @@
                 Interfejs graficzny jest w całości napisany w języku QML korzystając z biblioteki QtQuick w~ wersji~ 2.6\cite{qtQuick2.6}, za paletę kolorów interfejsu odpowiada biblioteka Material~2.0\cite{qtMaterial2}, kształt i zachowania elementów widoku zaczerpnięto z biblioteki Controls~2.0 \cite{qtControls2}. 
                 
                 \subsubsection{Przykład połączenia klasy C++ z QML}
-                Przykład demonstruje mechanizm łączenia klas C++ z~kodem interfejsu graficznego w QML, z~uwagi na zbyt dużą złożoność kodu w projekcie, posłużono się uproszczono wersję. Kod przykładu pokazuje obsługę przełącznika (Switch) takiego jak wykorzystany na Rys \ref{fig:view5}.
+                Przykład demonstruje mechanizm łączenia klas C++ z~kodem interfejsu graficznego w QML, z~uwagi na zbyt dużą złożoność kodu w projekcie, posłużono się uproszczoną wersją. Kod przykładu pokazuje obsługę przełącznika (Switch) takiego jak wykorzystany na Rys \ref{fig:view5}.
                     \begin{figure}[H]
                     \begin{center}
                         \includegraphics[width=0.65\textwidth]{code_class.jpg}
                     \end{center}
                     \end{figure}
-\noindent                    Klasa UiManualData ma reagować na zmianę stanu przełącznika w sposób asynchroniczny, aby to osiągnąć należy skorzystać z modelu sygnałów i slotów z QT. Tworząc własny typ uzyskuje się to przez dziedzicznie po typie QObject oraz definicję makra Q\_OBJECT w sekcji prywatnej klasy. W lini 9 znajduje się definicja slotu, który będzie wywoływany z obiektu QML.
+\noindent                    Klasa UiManualData ma reagować na zmianę stanu przełącznika w sposób asynchroniczny, aby to osiągnąć należy skorzystać z modelu sygnałów i slotów z QT. Tworząc własny typ uzyskuje się to poprzez dziedzicznie po typie QObject oraz definicję makra Q\_OBJECT w sekcji prywatnej klasy. W lini 9 znajduje się definicja slotu, który będzie wywoływany z obiektu QML.
                     
                     \begin{figure}[H]
                     \begin{center}
                         \includegraphics[width=0.65\textwidth]{code_main.jpg}
                     \end{center}
                     \end{figure}
-                    W celu udostępnienia klasy UiManualData w QML, należy ją zarejestrować, czynność ta odbywa się w linijce 8.
+\noindent                    W celu udostępnienia klasy UiManualData w QML, należy ją zarejestrować, czynność ta odbywa się w linijce 8.
                     
                     \begin{figure}[H]
                     \begin{center}
                         \includegraphics[width=0.65\textwidth]{code_qml.jpg}
                     \end{center}
                     \end{figure}
-      \noindent              W pliku .qml należy zaimportować klasę, linia 1, trzeba pamiętać o numerze wersji z~ jakim zarejestrowało się dany typ. Następnie trzeba stworzyć obiekt tej klasy, linijki 4-6.
+      \noindent              W pliku .qml trzeba zaimportować klasę, linia 1, pamiętająć o numerze wersji z~ jakim zarejestrowało się dany typ. Następnie trzeba stworzyć obiekt tej klasy, linijki 4-6.
                     Po wykonaniu tych czynności można korzystać z interfejsu klasy. W~sygnale \emph{onToggle} (sygnał wywoływany przy zmianie stanu przełącznika) obiektu Switch, występuje wywołanie metody klasy UiManualData.
                 
                 \newpage
@@ -484,23 +485,23 @@
                     \end{center}
                     \end{figure}
                 \subsubsection{Warstwa sygnałów UI}
-                Warstwa sygnałów UI jest bezpośrednim połączeniem z interfejsem graficznym QML, wykorzystywane są tutaj takie mechanizmy jak ten przedstawiony w sekcji 5.5.1. Warstwa ta jest całkowicie przezroczysta - nie przechowywane są tutaj żądane dane oraz nie ma w niej zaimplementowanej logiki systemu. Sprawdzane jest jedynie czy dane przychodzące z warstwy UI są poprawne.
+                Warstwa sygnałów UI jest bezpośrednim połączeniem z interfejsem graficznym QML. Wykorzystywane są tutaj takie mechanizmy jak ten przedstawiony w sekcji 5.5.1. Warstwa ta jest całkowicie przezroczysta - nie przechowywane są tutaj żądane dane oraz nie ma w niej zaimplementowanej logiki systemu. Sprawdzane jest jedynie czy dane przychodzące z warstwy UI są poprawne.
                 
                 \subsubsection{Warstwa danych}
-                Warstwa danych przechowuje dane wprowadzone przez użytkownika takie jak: konfiguracja scen i~ alarmów, obecny stan modułu, dane animacji.  
+                Warstwa danych przechowuje dane wprowadzone przez użytkownika takie jak: konfiguracja scen i~ alarmów, obecny stan modułu oraz dane animacji.  
                 
                 \subsubsection{Warstwa logiki}
                 Warstwa logiki jest prostą maszyną stanów, która podejmuje decyzje na podstawie sygnału z~ interfejsu użytkownika jak i z informacji o obecnym stanie urządzenia. Na przykład jeśli użytkownik ręcznie uruchomi animację i w~trakcie jej wykonywania zostanie aktywowany alarm, zostanie zlecone przerwanie wykonywania animacji i~wywołana będzie zadana funkcja alarmu.
                 
                 \subsubsection{Warstwa obsługi zadań}
-                Warstwa obsługi zadań odpowiada za planowanie i~wykonywanie czynności zadanych przez warstwę logiki, dane do poszczególnych zadań pobierane są bezpośrednio z~warstwy danych.
+                Warstwa obsługi zadań odpowiada za planowanie i~wykonywanie czynności zadanych przez warstwę logiki. Dane do poszczególnych zadań pobierane są bezpośrednio z~warstwy danych.
                 
                 \subsubsection{Warstwa obsługi sprzętu}
-                Warstwa obsługi sprzętu jest jednie abstrakcją do sprzętu urządzenia, wykonuje zlecone polecenia, nie podejmuje, żadnych decyzji, może jedynie zgłosić błąd wykonywania czynności.
+                Warstwa obsługi sprzętu jest jednie abstrakcją do sprzętu urządzenia, wykonuje zlecone polecenia. Nie podejmuje, żadnych decyzji, mogąc jedynie zgłosić błąd wykonywania czynności.
                 
                     \newpage
                 \subsection{Obsługa sprzętu}
-                Do obsługi sprzętu zdecydowano się użyć bibliotekę WiringPi \cite{wiringPi}, która jest udostępniana na zasadach \emph{GNU LGPL v.3 }. Biblioteka jest napisana proceduralnie w~języku C i~stanowi jedynie warstwę abstrakcji do sprzętu mikroprocesora. Biblioteka wspiera używanie mikroprocesorów \emph{BCM2835}, \emph{BCM2836} oraz  \emph{BCM2837}. \\*
+                Do obsługi sprzętu zdecydowano się użyć bibliotekę WiringPi \cite{wiringPi}, która jest udostępniana na zasadach \emph{GNU LGPL v.3 }. Biblioteka jest napisana proceduralnie w~języku C i~stanowi jedynie warstwę abstrakcji do sprzętu mikroprocesora. W spiera używanie mikroprocesorów \emph{BCM2835}, \emph{BCM2836} oraz  \emph{BCM2837}. \\*
                 WiringPi implementuje m.in. : 
                 \begin{itemize}
                     \item obsługę wejść i wyjść,
@@ -539,11 +540,11 @@
                             \caption{Schemat blokowy startu modułu} \label{fig:startup}
                         \end{center}
                         \end{figure}
-                Przedstawiony schemat blokowy(rysunek \ref{fig:startup}) jest zaimplementowany w postaci skryptu bash'owego uruchamianego bezpośrednio po starcie systemu operacyjnego. Decyduje on o~trybie uruchomienia urządzenia, włącza odpowiedni plik binarny i~konfiguruje peryferia sprzętowe procesora.
+                Przedstawiony schemat blokowy (rysunek \ref{fig:startup}) jest zaimplementowany w postaci skryptu bash'owego uruchamianego bezpośrednio po starcie systemu operacyjnego. Decyduje on o~trybie uruchomienia urządzenia, włącza odpowiedni plik binarny i~konfiguruje peryferia sprzętowe procesora.
                 \newpage
                         
                     \subsubsection{Tryb serwisowy 1}
-                    Osobny program służący do testowania połączenia Raspberry Pi z~modułem wykonawczym, nie wykorzystuje kodu źródłowego aplikacji użytkownika, jest napisany w~taki sposób aby zminimalizować możliwość wystąpienia błędu w czasie działania.
+                    Osobny program służący do testowania połączenia Raspberry Pi z~modułem wykonawczym, nie wykorzystuje kodu źródłowego aplikacji użytkownika.Napisano go w~taki sposób aby zminimalizować możliwość wystąpienia błędu w czasie działania.
                         \begin{figure}[H]
                         \begin{center}
                             \includegraphics[width=0.4\textwidth]{t1.png}
@@ -578,6 +579,22 @@
                         \newpage
 
 \chapter{Wnioski i uwagi}
+Zgodnie założeniami projektowymi powstało urządzenie, które realizuje postawione wymagania oraz spełnia zadane kryteria jakościowe. W ramach prac nad urządzeniem powstała również dokumentacja techniczna i opis wykorzystanych technologi. Proces prototypownia, projektowania i tworzenia modułu wraz z jego dokumentacji dostarczył cennych obserwacji i wniosków. W szczególności zaobserwowano, że:
+\begin{itemize}
+
+\item Wszystkie wykorzystane w projekcie technologie są standardem w branży produkcji urządzeń wbudowanych. Zastosowanie języka C++ pozwoliło stworzyć oprogramowanie, które będzie łatwo rozszerzalne w przyszłości o nową funkcjonalność. Biblioteka QT i język QML dały możliwość zrealizowania czytelnego i responsywnego interfejsu graficznego. Wykorzystanie Raspberry Pi Zero W ułatwiło proces tworzenia oprogramowania, natomiast platforma ta nie byłaby odpowiednia do produktu konsumenckiego z uwagi na zbyt duży koszt w masowej produkcji. Raspberry Pi Zero W nie pozwoliłoby również na rozszerzenie części sprzętowej urządzenia. Rozwiązaniem tego problemu byłoby dołożenie mikroprocesora sterującego tylko elektroniką, który komunikowałby się z modułem nadrzędnym.
+
+\item Projekt posiada większą funkcjonalność niż standardowe urządzenia tego typu, agregują sterownik paska ledowego oraz dwa programowalne moduły przekaźnikowe. Zdolność elektryczna modułu jest kilkukrotnie wyższa niż podobnych urządzeń na rynku i pozwalałoby sterować oświetleniem małego pomieszczenia użytkowego.
+
+\item Interfejs graficzny użytkownika pomimo zastosowania stosunkowo małego wyświetlacza pozostaje czytelny, korzystanie z niego jest intuicyjne. Dostępne funkcje i ich obsługą oferują użytkownikowi różnorodność w sposobach wykorzystania modułu. 
+
+\item Zaprojektowana elektronika poprawnie spełnia założoną funkcjonalność. Tranzystory MOSFET pozwalałyby przełączać większe obciążenie, natomiast ograniczeniem jest płytka drukowana i zastosowane złącza. Wyświetlacz dotykowy w przyszłości mógłby być zastąpiony większym lub całkowicie zlikwidowany na rzecz aplikacji w urządzeniu mobilnym. Dodatkowo elektronika modułu mogła by oferować pomiar zużywanej energii oraz czujniki ruchu.
+
+\item Sposób zaprojektowania elektroniki pozwala na łatwiejsze sprawdzanie poprawności działania. Instrukcja montażu w dokładny sposób tłumaczy kolejne kroki budowy modułu. W przyszłości wszystkie elementy przewlekane mogłyby zostać zastąpione montowanymi powierzchniowo w celu automatyzacji procesu konstrukcji produktu.
+
+\item Stworzone oprogramowanie jest zgodne z panującymi zasadami tworzenia kodu. Podział warstwowy umożliwia łatwe rozszerzanie o dodatkową funkcjonalność. Zastosowanie języka QML pozwoliło utworzyć , Zastosowanie biblioteki WiringPi dało możliwość szybkiego oprogramowania warstwy obsługi sprzętu, niestety biblioteka ta nie jest przenośna między platformami i sposób jej implementacji nie pozwala na korzystanie z bardziej zaawansowanych aspektów peryferiów mikroprocesora.
+
+\end{itemize}
 \thispagestyle{fancy}
 
 
